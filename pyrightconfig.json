@@ -2,6 +2,9 @@
   "include": [
     "src",
   ],
+  "extraPaths": [
+    "../LLM_elicitation"
+  ],
   "typeCheckingMode": "standard",
   "exclude": [
     "src/gepa/adapters/dspy_adapter",

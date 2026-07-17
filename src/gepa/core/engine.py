@@ -625,9 +625,18 @@ class GEPAEngine(Generic[DataId, DataInst, Trajectory, RolloutOutput]):
         # Evaluate seed candidate on valset (after on_optimization_start callback).
         # Policies may narrow the seed evaluation via the optional get_seed_eval_batch
         # hook; the state does not exist yet, so get_eval_batch cannot be used here.
-        seed_batch_fn = getattr(self.val_evaluation_policy, "get_seed_eval_batch", None)
-        seed_val_ids = list(seed_batch_fn(valset)) if seed_batch_fn is not None else list(valset.all_ids())
-        seed_valset_evaluation = valset_evaluator(self.seed_candidate, seed_val_ids)
+        # When resuming from a saved state, the seed's valset scores are already in
+        # the state and initialize_gepa_state ignores this argument — skip the
+        # (potentially expensive) re-evaluation instead of discarding it.
+        resuming = self.run_dir is not None and os.path.exists(os.path.join(self.run_dir, "gepa_state.bin"))
+        if resuming:
+            seed_valset_evaluation: ValsetEvaluation[RolloutOutput, DataId] = ValsetEvaluation(
+                outputs_by_val_id={}, scores_by_val_id={}, objective_scores_by_val_id=None
+            )
+        else:
+            seed_batch_fn = getattr(self.val_evaluation_policy, "get_seed_eval_batch", None)
+            seed_val_ids = list(seed_batch_fn(valset)) if seed_batch_fn is not None else list(valset.all_ids())
+            seed_valset_evaluation = valset_evaluator(self.seed_candidate, seed_val_ids)
 
         # Initialize state with pre-computed seed evaluation
         state = initialize_gepa_state(

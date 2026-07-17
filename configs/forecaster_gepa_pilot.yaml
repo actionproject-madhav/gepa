@@ -1,0 +1,24 @@
+# PILOT run — small real-API diagnostic to sanity-check the native GEPA
+# settings (per-instance Pareto frontier, 20-cell gate) before committing to
+# the full budget. Watch the diagnostics/* panels in W&B (see the README for
+# the go/no-go criteria). Approximate cost: ~2,600 Sonnet cells + ~40 Opus
+# reflections ~= $40.
+#
+# Everything not set here keeps the defaults in src/forecaster_gepa/config.py
+# (same seed, same task manifest layout, same models as the full run).
+
+run_dir: runs/forecaster_gepa_pilot
+manifest_path: runs/forecaster_gepa_pilot/task_manifest.json
+
+max_iterations: 40          # ~40 candidates proposed
+max_metric_calls: 4000      # safety net; the iteration cap binds first
+
+# ---- forecaster API throughput ----
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+wandb_entity: saferai
+use_wandb: true
+seed: 42

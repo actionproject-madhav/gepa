@@ -1,0 +1,40 @@
+# GEPA forecaster-optimisation experiment — run configuration.
+# Every field here overrides the defaults in src/forecaster_gepa/config.py;
+# fields omitted keep their defaults. See that module for full documentation.
+
+# ---- paths ----
+# Relative paths are resolved against the gepa repo root.
+lyptus_repo_dir: ~/gitrepos/cyber-task-horizons-data
+seed_template_path: configs/seed_prompt_minimal.txt
+run_dir: runs/forecaster_gepa
+manifest_path: runs/forecaster_gepa/task_manifest.json
+
+# ---- models ----
+forecaster_model: claude-sonnet-4-6      # reasoning_effort=off
+reflection_model: anthropic/claude-opus-4-8
+forecasted_models_search: ["GPT-4o", "Gemini 2.5 Pro", "Opus 4", "GPT-5.3 Codex"]
+# forecasted_models_full defaults to the 11-model panel (12 modern minus Sonnet 4.6)
+
+# ---- forecaster API throughput ----
+# Concurrent in-flight requests within a batch, plus a client-side soft rate
+# limiter. On top of these the SDK auto-retries 429s (8 attempts, backoff);
+# only if that exhausts does a cell fail (scored -1.0, loudly warned).
+max_concurrent_calls: 10
+rate_limit_calls: 200        # max calls per rate_limit_period seconds
+rate_limit_period: 60
+
+# ---- GEPA loop ----
+max_metric_calls: 18000     # 1 call = 1 cell = 1 Sonnet generation
+max_iterations: 300         # hard cap on candidates proposed
+use_merge: false
+n_cells_won_needed_for_pareto_frontier: 1   # native
+
+# ---- reflection ----
+n_reflection_traces: 20
+reflection_trace_selection: worst_k_stochastic
+
+# ---- reproducibility / logging ----
+seed: 42
+wandb_project: gepa-forecaster
+wandb_entity: saferai
+use_wandb: true

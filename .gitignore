@@ -215,4 +215,5 @@ __marimo__/
 # Experiments
 runs/
 outputs/
+wandb/
 gepa_terminus/

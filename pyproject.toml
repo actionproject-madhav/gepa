@@ -87,9 +87,24 @@ langchain = [
     "tqdm>=4.66",
 ]
 
+# Forecaster-optimisation experiment (SaferAI): GEPA on the LLM_estimator
+# intra-benchmark forecasting pipeline. `llm-estimator` is an editable path
+# dependency on the sibling LLM_elicitation checkout (see [tool.uv.sources]);
+# the branch/commit in use is recorded in each run's manifest and run_config.
+forecaster = [
+    "gepa[full]",
+    "llm-estimator",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pyyaml>=6.0",
+]
+
 [project.urls]
 "Homepage" = "https://github.com/gepa-ai/gepa"
 "Bug Tracker" = "https://github.com/gepa-ai/gepa/issues"
+
+[tool.uv.sources]
+llm-estimator = { path = "../LLM_elicitation", editable = true }
 
 [tool.setuptools.packages.find]
 where = ["src"]
