@@ -199,6 +199,18 @@ class DiagnosticsCallback:
 
     def _proposal_record(self, status: str, extra: dict[str, Any]) -> dict[str, Any]:
         ctx = self._ctx
+        parent_scores = ctx.get("parent_gate_scores") or []
+        child_scores = ctx.get("child_gate_scores") or []
+        # Task-win count: logged regardless of which acceptance_criterion is
+        # active, so gate criteria can be compared post-hoc from the JSONL
+        # (see src/forecaster_gepa/acceptance.py). Requires matching lengths
+        # (parent and child are evaluated on the same gate minibatch); falls
+        # back to None if a proposal was skipped before both evals ran.
+        task_wins = (
+            sum(1 for p, c in zip(parent_scores, child_scores, strict=True) if c > p)
+            if len(parent_scores) == len(child_scores) and parent_scores
+            else None
+        )
         record = {
             "kind": "proposal",
             "status": status,
@@ -206,10 +218,12 @@ class DiagnosticsCallback:
             "parent_idx": ctx.get("parent_idx"),
             "parent_val_score": ctx.get("parent_val_score"),
             "gate_cell_ids": ctx.get("gate_cell_ids"),
-            "gate_scores_parent": ctx.get("parent_gate_scores"),
-            "gate_scores_child": ctx.get("child_gate_scores"),
-            "gate_sum_parent": sum(ctx.get("parent_gate_scores") or []),
-            "gate_sum_child": sum(ctx.get("child_gate_scores") or []),
+            "gate_scores_parent": parent_scores,
+            "gate_scores_child": child_scores,
+            "gate_sum_parent": sum(parent_scores),
+            "gate_sum_child": sum(child_scores),
+            "gate_task_wins": task_wins,
+            "gate_n_cells": len(parent_scores) or None,
             "candidate_text": ctx.get("proposal_new_instructions"),
             "approx_gate_tokens": (
                 (ctx.get("parent_gate_approx_tokens") or 0) + (ctx.get("child_gate_approx_tokens") or 0)
@@ -227,13 +241,21 @@ class DiagnosticsCallback:
             "candidate_idx": idx,
             "val_mean_score": self._cand.get(idx, {}).get("avg_score"),
         }
-        _jsonl_append(self._candidates_fh, self._proposal_record("accepted", extra))
-        self._wandb_log({"diagnostics/accepted": 1}, step=event["iteration"])
+        record = self._proposal_record("accepted", extra)
+        _jsonl_append(self._candidates_fh, record)
+        wandb_metrics: dict[str, Any] = {"diagnostics/accepted": 1}
+        if record.get("gate_task_wins") is not None:
+            wandb_metrics["diagnostics/gate_task_wins"] = record["gate_task_wins"]
+        self._wandb_log(wandb_metrics, step=event["iteration"])
 
     def on_candidate_rejected(self, event) -> None:
         extra = {"reject_reason": event["reason"]}
-        _jsonl_append(self._candidates_fh, self._proposal_record("rejected", extra))
-        self._wandb_log({"diagnostics/accepted": 0}, step=event["iteration"])
+        record = self._proposal_record("rejected", extra)
+        _jsonl_append(self._candidates_fh, record)
+        wandb_metrics: dict[str, Any] = {"diagnostics/accepted": 0}
+        if record.get("gate_task_wins") is not None:
+            wandb_metrics["diagnostics/gate_task_wins"] = record["gate_task_wins"]
+        self._wandb_log(wandb_metrics, step=event["iteration"])
 
     # ------------------------------------------------------------------
     # Per-iteration frontier diagnostics

@@ -21,14 +21,16 @@ the editable package `llm-estimator` (see its `README_GEPA.md`).
 | `src/forecaster_gepa/config.py`      | All experiment knobs (spec §4) in one dataclass; YAML overrides       |
 | `src/forecaster_gepa/data.py`        | Manifest + Lyptus loading, cell plans, GEPA data loaders              |
 | `src/forecaster_gepa/adapter.py`     | `GEPAAdapter`: per-cell **−Brier** scores, traces, reflective dataset |
-| `src/forecaster_gepa/sampler.py`     | Gate sampler: 1 task per FST bin × 4 models = 20 cells/iteration      |
-| `src/forecaster_gepa/selection.py`   | Native Pareto parent selector (+ optional ≥k-cells-won filter)        |
+| `src/forecaster_gepa/sampler.py`     | Gate sampler: `n_train_tasks_per_iter` tasks per FST bin × search models |
+| `src/forecaster_gepa/selection.py`   | Native Pareto **parent-selection** (frontier-inclusion) helper — see below |
+| `src/forecaster_gepa/acceptance.py`  | **Acceptance-gate** criteria (child vs parent on the gate minibatch) — see below |
 | `src/forecaster_gepa/diagnostics.py` | W&B/JSONL instrumentation (spec §6)                                   |
 | `src/forecaster_gepa/metrics.py`     | Yates/Murphy Brier decompositions, frontier stats, correlations       |
 | `src/forecaster_gepa/run.py`         | CLI harness: all phases, checkpoint/resume, W&B wiring                |
 | `src/forecaster_gepa/stub.py`        | Deterministic stub forecaster/reflection for dry runs                 |
 | `configs/forecaster_gepa.yaml`       | Full-run config                                                       |
-| `configs/forecaster_gepa_pilot.yaml` | Small real-API pilot (go/no-go diagnostics)                           |
+| `configs/forecaster_gepa_pilot.yaml` | Small real-API pilot, native acceptance gate (go/no-go diagnostics)   |
+| `configs/forecaster_gepa_pilot_taskwin.yaml` | Same pilot, joint acceptance gate (aggregate AND ≥k task wins) |
 | `configs/seed_prompt_minimal.txt`    | The GEPA seed prompt (minimal single-call template, rationale first)  |
 
 
@@ -88,6 +90,10 @@ uv run python -m forecaster_gepa.run --phase verify-sign --run-dir runs/verify_s
 
 # 2. PILOT (go/no-go diagnostics, ~$40, ~40 candidates — see below):
 uv run python -m forecaster_gepa.run --config configs/forecaster_gepa_pilot.yaml --phase optimize
+
+# 2b. Optional: same pilot with the joint acceptance gate, for comparison
+#     (see "Two distinct noise-mitigation knobs" below):
+uv run python -m forecaster_gepa.run --config configs/forecaster_gepa_pilot_taskwin.yaml --phase optimize
 
 # 3. FULL run (~18k Sonnet cells + ~250 Opus reflections, roughly $300):
 uv run python -m forecaster_gepa.run --config configs/forecaster_gepa.yaml --phase all
@@ -199,12 +205,61 @@ pulling the artifact.
 | `gepa_state.bin`, `candidates.json`          | GEPA checkpoint + all candidate texts                                                     |
 | `task_manifest.json`                         | The seeded task split (reused on resume)                                                  |
 | `run_config.json`                            | Resolved config + git SHAs of both repos + seed template                                  |
-| `candidates.jsonl`                           | Per-proposal records, accepted AND rejected (gate scores, text, val scores, Yates/Murphy) |
+| `candidates.jsonl`                           | Per-proposal records, accepted AND rejected (gate scores, task-win count, text, val scores, Yates/Murphy) |
 | `diagnostics.jsonl`                          | Per-iteration frontier stats, agreement, correlations                                     |
 | `gate_traces.jsonl`                          | Full rollout traces for the gate/reflection cells only                                    |
 | `finalist_results.json`, `test_results.json` | End-of-run evaluations                                                                    |
 | `verify_sign.json`                           | Metric-sign check result                                                                  |
 
+
+## Two distinct noise-mitigation knobs — don't conflate them
+
+Native GEPA makes two separate decisions from noisy per-cell scores, and
+this fork adds an independent knob for each (see the design summary §4/§7):
+
+1. **Parent selection / frontier inclusion** (`selection.py`,
+   `n_cells_won_needed_for_pareto_frontier` in the config): which of the
+   *already-accepted* candidates in the pool are eligible to be sampled as a
+   parent next iteration. Native GEPA's frontier is "every candidate that is
+   the best scorer on ≥1 val cell" (default `= 1`); raising it to e.g. 3
+   requires ≥3 val cells won before a candidate joins the sampleable
+   frontier. This does not affect whether a child gets into the pool in the
+   first place — only who gets to be a parent afterwards.
+2. **Acceptance gate** (`acceptance.py`, `acceptance_criterion` /
+   `acceptance_min_task_wins` / `acceptance_margin_tau`): whether a proposed
+   child even *enters* the pool. Native GEPA's gate is
+   `sum(child gate scores) > sum(parent gate scores)` over the 20-cell
+   minibatch — a single aggregate comparison. This is what a pilot run
+   showed to be unreliable: only ~40–50% of accepted children also improved
+   on the 84-cell val set (`diagnostics/gate_val_agreement_running`), i.e.
+   close to a coin flip. The failure mode is concrete: a child that wins big
+   on one gate cell and loses slightly on the other 19 can still win the
+   *aggregate* Brier sum, even though it is only better on 1/20 individual
+   cells — the aggregate criterion cannot tell "broad, consistent
+   improvement" apart from "one lucky/unlucky cell dominating the sum".
+   `TaskWinAcceptance` in `acceptance.py` adds a **task-win count**
+   criterion as an alternative or an AND-joined addition:
+
+   | `acceptance_criterion` | Accepts iff |
+   |---|---|
+   | `aggregate_sum` (default; native) | `sum(child) - sum(parent) > 0` |
+   | `min_task_wins` | child beats parent on `>= acceptance_min_task_wins` of the individual gate cells (ignores the sum) |
+   | `aggregate_sum_and_min_task_wins` | **both**: `sum(child) - sum(parent) > acceptance_margin_tau` **AND** `>= acceptance_min_task_wins` individual cells won |
+
+   `configs/forecaster_gepa_pilot_taskwin.yaml` runs the pilot with the joint
+   criterion (`min_task_wins=6` of the 20-cell gate, i.e. Jeff's "3 of 10"
+   scaled up); every accept/reject decision also logs `gate_task_wins` to
+   `candidates.jsonl` and W&B (`diagnostics/gate_task_wins`) **regardless of
+   which criterion is active**, so the two gates can be compared side by
+   side from the same run if you want. `acceptance_min_task_wins` must not
+   exceed the actual gate size (`n_bins × n_train_tasks_per_iter × len(forecasted_models_search)`,
+   20 by default) — the harness raises at startup if it does.
+
+   Gate size itself is also adjustable: `n_train_tasks_per_iter` (default 1)
+   sets how many tasks are sampled per FST bin per iteration; raising it
+   widens the gate (e.g. `3` → 5 bins × 3 tasks × 4 models = 60 cells) at
+   proportional extra cost per iteration. If you use the joint acceptance
+   criterion with a wider gate, scale `acceptance_min_task_wins` accordingly.
 
 ## The pilot: what to look at for go/no-go
 
@@ -228,12 +283,19 @@ the k-cells-won threshold / stratified selection? Watch these W&B panels
 Caveat: with ~40 candidates and a realistic acceptance rate you get perhaps
 10–15 accepted children, so the agreement fraction and the frontier
 correlations are indicative, not conclusive — extend `max_iterations` if the
-signals are borderline. If the pathologies bite, the first cheap remedy is
-`n_cells_won_needed_for_pareto_frontier: 3` in the YAML (frontier restricted
-to candidates winning ≥3 val cells; default 1 = native). **Stratified parent
-selection is deliberately NOT implemented** — per the design summary it is
-future work, justified only if the pilot shows the native frontier is
-noise-dominated.
+signals are borderline. If the pathologies bite, there are now two
+independent remedies (see "Two distinct noise-mitigation knobs" above — pick
+the one matching which mechanism looks noisy):
+
+- Frontier looks noise-dominated (many one-cell winners, high effective
+  parents) → raise `n_cells_won_needed_for_pareto_frontier` (e.g. to 3).
+- Gate looks noise-dominated (`gate_val_agreement_running` near 0.5, as our
+  first pilot showed) → switch `acceptance_criterion` to
+  `aggregate_sum_and_min_task_wins` (see `forecaster_gepa_pilot_taskwin.yaml`).
+
+**Stratified parent selection is deliberately NOT implemented** — per the
+design summary it is future work, justified only if these cheaper remedies
+prove insufficient.
 
 ## Future option (not implemented): optional data placeholders
 

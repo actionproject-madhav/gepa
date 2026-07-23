@@ -1,0 +1,27 @@
+# PILOT variant — same as forecaster_gepa_pilot.yaml, but with the
+# acceptance gate replaced by the joint "aggregate Brier improvement AND
+# beats parent on >= k individual gate cells" criterion (see
+# src/forecaster_gepa/acceptance.py). Run this alongside the native pilot
+# and compare `diagnostics/gate_val_agreement_running` between the two runs
+# to see whether the task-win requirement produces more trustworthy accepts.
+
+run_dir: runs/forecaster_gepa_pilot_taskwin
+manifest_path: runs/forecaster_gepa_pilot_taskwin/task_manifest.json
+
+max_iterations: 40
+max_metric_calls: 4000
+
+# ---- forecaster API throughput ----
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+# ---- acceptance gate ----
+acceptance_criterion: aggregate_sum_and_min_task_wins
+acceptance_min_task_wins: 6   # >= 6 of the 20 gate cells (scale with n_train_tasks_per_iter)
+acceptance_margin_tau: 0.0
+
+wandb_project: gepa-forecaster
+wandb_entity: saferai
+use_wandb: true
+seed: 42

@@ -33,6 +33,7 @@ from typing import Any, Sequence
 import numpy as np
 from scipy import stats as scipy_stats
 
+from forecaster_gepa.acceptance import make_acceptance_criterion
 from forecaster_gepa.adapter import ForecasterAdapter
 from forecaster_gepa.config import COMPONENT_NAME, ForecasterGEPAConfig, config_as_dict, load_config
 from forecaster_gepa.data import CellSpec, ExperimentData
@@ -183,6 +184,20 @@ def phase_optimize(cfg: ForecasterGEPAConfig, data: ExperimentData, run_dir: Pat
     adapter.register_rng("pareto", pareto_rng)
     selector = make_candidate_selector(cfg.n_cells_won_needed_for_pareto_frontier, pareto_rng)
 
+    gate_size = cfg.n_bins * cfg.n_train_tasks_per_iter * len(cfg.forecasted_models_search)
+    if cfg.acceptance_criterion != "aggregate_sum" and cfg.acceptance_min_task_wins > gate_size:
+        raise ValueError(
+            f"acceptance_min_task_wins={cfg.acceptance_min_task_wins} exceeds the gate size "
+            f"{gate_size} ({cfg.n_bins} bins x {cfg.n_train_tasks_per_iter} task(s) x "
+            f"{len(cfg.forecasted_models_search)} models) -- no child could ever be accepted."
+        )
+    acceptance_criterion = make_acceptance_criterion(
+        cfg.acceptance_criterion,
+        min_task_wins=cfg.acceptance_min_task_wins,
+        margin=cfg.acceptance_margin_tau,
+    )
+    logger.info(f"Acceptance gate: {cfg.acceptance_criterion!r} (gate size {gate_size} cells)")
+
     if cfg.dry_run:
         reflection_lm: Any = StubReflectionLM()
         reflection_lm_kwargs = None
@@ -233,6 +248,7 @@ def phase_optimize(cfg: ForecasterGEPAConfig, data: ExperimentData, run_dir: Pat
         perfect_score=0.0,
         skip_perfect_score=True,
         use_merge=cfg.use_merge,
+        acceptance_criterion=acceptance_criterion,
         max_metric_calls=cfg.max_metric_calls,
         stop_callbacks=[MaxIterationsStopper(max_iterations)],
         run_dir=str(run_dir),

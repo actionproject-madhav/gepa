@@ -115,7 +115,9 @@ class ForecasterGEPAConfig:
     # ---- GEPA loop ----
     # Native per-instance Pareto frontier; >1 filters the frontier to
     # candidates winning at least this many val cells (config knob only;
-    # default 1 = exactly native behaviour).
+    # default 1 = exactly native behaviour). This is the PARENT-SELECTION /
+    # frontier-inclusion knob -- distinct from the acceptance-gate knobs
+    # below (which decide whether a proposed child even ENTERS the pool).
     n_cells_won_needed_for_pareto_frontier: int = 1
     # Budget: one metric call = one evaluated cell = one Sonnet generation.
     # Cost model: seed valset (84) + 40 gate cells/iteration + 84 val cells
@@ -124,6 +126,28 @@ class ForecasterGEPAConfig:
     max_iterations: int = 300  # hard cap on candidates proposed
     use_merge: bool = False
     selection_strategy: str = "pareto"  # native per-instance Pareto parent selection
+
+    # ---- acceptance gate (child vs parent on the gate minibatch) ----
+    # See src/forecaster_gepa/acceptance.py for the full rationale. One of:
+    #   "aggregate_sum"                  native GEPA: sum(child) > sum(parent)
+    #   "min_task_wins"                  child must beat parent on
+    #                                     >= acceptance_min_task_wins of the
+    #                                     individual gate cells (ignores the
+    #                                     aggregate sum)
+    #   "aggregate_sum_and_min_task_wins" BOTH of the above (AND)
+    # Default is native ("aggregate_sum"); the pilot config demonstrates the
+    # joint criterion.
+    acceptance_criterion: str = "aggregate_sum"
+    # k in "child must win >= k of the gate cells". Only used when
+    # acceptance_criterion is "min_task_wins" or "aggregate_sum_and_min_task_wins".
+    # With the default 20-cell gate (5 bins x 1 task x 4 models), k=3 mirrors
+    # Jeff's "3 of 10" suggestion (roughly a third of the minibatch, rounded
+    # for our 20-cell gate). Scale with n_train_tasks_per_iter if that changes.
+    acceptance_min_task_wins: int = 6
+    # tau in "sum(child) - sum(parent) > tau"; 0.0 reproduces native
+    # StrictImprovementAcceptance's strict-inequality behaviour exactly.
+    # Only used when acceptance_criterion is "aggregate_sum_and_min_task_wins".
+    acceptance_margin_tau: float = 0.0
 
     # ---- reflection dataset ----
     n_reflection_traces: int = 20  # subset of the 20 gate cells fed to reflection
