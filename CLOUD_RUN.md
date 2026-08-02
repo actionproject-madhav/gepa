@@ -50,6 +50,62 @@ Do not modify configs, seeds, the manifest, or any code.
 - Either way: `git fetch fork results/pilot_gate100` after the session
   reports completion.
 
+## Full-ladder autonomous prompt (E1 + gate-100 + E4 in one session)
+
+The July baseline checkpoint (`runs/pilot_baseline/gepa_state.bin` +
+`candidates.json`) is committed to this branch, so the finalist phase (E1)
+also works in the sandbox. Paste the following into the cloud session:
+
+```
+Read CLOUD_RUN.md and FORECASTER_GEPA_RUNS.md first. Then execute this
+three-stage experiment ladder autonomously, in order, without stopping for
+confirmation. Do not modify any source code, configs, seeds, or the
+manifest; do not run anything not listed here.
+
+Stage 0 — setup:
+- bash scripts/cloud_setup.sh   (must end with "Setup OK")
+- If WANDB_API_KEY is missing from the environment, set use_wandb: false in
+  configs/pilot_baseline.yaml, configs/pilot_gate100.yaml and
+  configs/pilot_reflection_v2.yaml (the ONLY permitted config edit).
+- git checkout -b results/ladder-2026-08-02
+
+Stage 1 — E1, finalist re-ranking of the July baseline (~20 min, ~1,400 calls):
+- uv run python -m forecaster_gepa.run --config configs/pilot_baseline.yaml --phase finalist
+- git add -f runs/pilot_baseline/finalist_results.json runs/pilot_baseline/finalist_cells.jsonl
+- Commit and push the results branch.
+
+Stage 2 — gate-100 optimization (~2.5 h, ~10k calls):
+- uv run python -m forecaster_gepa.run --config configs/pilot_gate100.yaml --phase optimize
+- If interrupted for any reason, rerun the same command — it resumes
+  exactly. Never restart from scratch, never delete the run dir.
+- python3 scripts/retrospective_gate_analysis.py --run-dir runs/pilot_gate100 \
+    --manifest runs/task_manifest_seed42.json --subsample-tasks-per-bin 1 2 3 \
+    > runs/pilot_gate100/retro_gate_analysis.txt
+- git add -f everything in runs/pilot_gate100/ EXCEPT gate_traces.jsonl;
+  commit and push.
+
+Stage 3 — E4, reflection-prompt v2 (~1 h, ~4k calls):
+- uv run python -m forecaster_gepa.run --config configs/pilot_reflection_v2.yaml --phase optimize
+- git add -f everything in runs/pilot_reflection_v2/ EXCEPT gate_traces.jsonl;
+  commit and push.
+
+Final report, one message:
+1. E1: finalist_results.json — per-candidate val vs finalist Brier including
+   the seed baseline entry, val<->finalist Spearman, winner; one sentence:
+   did the seed->winner gap survive on cells that exerted no selection
+   pressure?
+2. Gate-100: the "Optimisation finished" log line; gate_val_agreement_running
+   and frontier stats from the LAST record of runs/pilot_gate100/diagnostics.jsonl;
+   the full retro_gate_analysis.txt output.
+3. E4: the "Optimisation finished" line; last diagnostics record; the full
+   text of the best candidate's template from runs/pilot_reflection_v2/candidates.json.
+4. Total metric calls across all stages.
+
+Rules: never edit source code; never change seeds; if a stage fails twice in
+a row, skip it, record the error, and continue with the next stage; before
+the session ends for any reason, commit and push whatever exists.
+```
+
 ## Caveats
 
 - Research-preview sandboxes may have session/wall-clock limits; a killed
