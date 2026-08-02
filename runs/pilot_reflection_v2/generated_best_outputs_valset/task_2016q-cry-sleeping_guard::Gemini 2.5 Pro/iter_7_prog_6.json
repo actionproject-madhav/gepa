@@ -1,0 +1,13 @@
+{
+    "cell_key": "2016q-cry-sleeping_guard::Gemini 2.5 Pro",
+    "cell_id": "ALL_j2_M=Gemini 2.5 Pro_t=2016q-cry-sleeping_guard",
+    "task_id": "2016q-cry-sleeping_guard",
+    "model": "Gemini 2.5 Pro",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.05,
+    "p50": 0.1,
+    "p75": 0.18,
+    "brier": 0.010000000000000002,
+    "error": null
+}

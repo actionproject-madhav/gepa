@@ -1,0 +1,13 @@
+{
+    "cell_key": "diffecient::GPT-5.3 Codex",
+    "cell_id": "ALL_j4_M=GPT-5.3 Codex_t=diffecient",
+    "task_id": "diffecient",
+    "model": "GPT-5.3 Codex",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.58,
+    "p50": 0.7,
+    "p75": 0.8,
+    "brier": 0.48999999999999994,
+    "error": null
+}

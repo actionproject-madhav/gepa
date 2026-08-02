@@ -1,0 +1,13 @@
+{
+    "cell_key": "cybashbench_forensics/nl2bash_005::Gemini 2.5 Pro",
+    "cell_id": "ALL_j0_M=Gemini 2.5 Pro_t=cybashbench_forensics/nl2bash_005",
+    "task_id": "cybashbench_forensics/nl2bash_005",
+    "model": "Gemini 2.5 Pro",
+    "bin": 0,
+    "outcome": 1.0,
+    "p25": 0.95,
+    "p50": 0.97,
+    "p75": 0.99,
+    "brier": 0.0009000000000000016,
+    "error": null
+}

@@ -1,0 +1,13 @@
+{
+    "cell_key": "2020q-pwn-roppity::Opus 4",
+    "cell_id": "ALL_j3_M=Opus 4_t=2020q-pwn-roppity",
+    "task_id": "2020q-pwn-roppity",
+    "model": "Opus 4",
+    "bin": 3,
+    "outcome": 1.0,
+    "p25": 0.3,
+    "p50": 0.45,
+    "p75": 0.6,
+    "brier": 0.30250000000000005,
+    "error": null
+}

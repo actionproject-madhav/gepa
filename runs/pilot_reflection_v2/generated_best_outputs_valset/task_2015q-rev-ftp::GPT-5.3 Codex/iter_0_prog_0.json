@@ -1,0 +1,13 @@
+{
+    "cell_key": "2015q-rev-ftp::GPT-5.3 Codex",
+    "cell_id": "ALL_j3_M=GPT-5.3 Codex_t=2015q-rev-ftp",
+    "task_id": "2015q-rev-ftp",
+    "model": "GPT-5.3 Codex",
+    "bin": 3,
+    "outcome": 1.0,
+    "p25": 0.4,
+    "p50": 0.58,
+    "p75": 0.72,
+    "brier": 0.17640000000000003,
+    "error": null
+}

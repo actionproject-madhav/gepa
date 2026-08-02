@@ -1,0 +1,13 @@
+{
+    "cell_key": "diffecient::Gemini 2.5 Pro",
+    "cell_id": "ALL_j4_M=Gemini 2.5 Pro_t=diffecient",
+    "task_id": "diffecient",
+    "model": "Gemini 2.5 Pro",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.15,
+    "p50": 0.28,
+    "p75": 0.42,
+    "brier": 0.07840000000000001,
+    "error": null
+}

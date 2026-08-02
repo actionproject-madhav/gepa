@@ -1,0 +1,13 @@
+{
+    "cell_key": "2015q-rev-ftp::Gemini 2.5 Pro",
+    "cell_id": "ALL_j3_M=Gemini 2.5 Pro_t=2015q-rev-ftp",
+    "task_id": "2015q-rev-ftp",
+    "model": "Gemini 2.5 Pro",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.05,
+    "p50": 0.1,
+    "p75": 0.18,
+    "brier": 0.010000000000000002,
+    "error": null
+}

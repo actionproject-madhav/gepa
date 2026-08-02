@@ -1,0 +1,13 @@
+{
+    "cell_key": "noisy_crc::Gemini 2.5 Pro",
+    "cell_id": "ALL_j2_M=Gemini 2.5 Pro_t=noisy_crc",
+    "task_id": "noisy_crc",
+    "model": "Gemini 2.5 Pro",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.05,
+    "p50": 0.1,
+    "p75": 0.15,
+    "brier": 0.010000000000000002,
+    "error": null
+}
