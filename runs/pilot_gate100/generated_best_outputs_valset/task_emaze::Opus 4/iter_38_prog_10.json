@@ -1,0 +1,13 @@
+{
+    "cell_key": "emaze::Opus 4",
+    "cell_id": "ALL_j4_M=Opus 4_t=emaze",
+    "task_id": "emaze",
+    "model": "Opus 4",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.1,
+    "p50": 0.22,
+    "p75": 0.38,
+    "brier": 0.0484,
+    "error": null
+}
