@@ -1,0 +1,13 @@
+{
+    "cell_key": "motp::Gemini 2.5 Pro",
+    "cell_id": "ALL_j2_M=Gemini 2.5 Pro_t=motp",
+    "task_id": "motp",
+    "model": "Gemini 2.5 Pro",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.12,
+    "p50": 0.25,
+    "p75": 0.38,
+    "brier": 0.0625,
+    "error": null
+}

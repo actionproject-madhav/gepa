@@ -1,0 +1,13 @@
+{
+    "cell_key": "emaze::GPT-4o",
+    "cell_id": "ALL_j4_M=GPT-4o_t=emaze",
+    "task_id": "emaze",
+    "model": "GPT-4o",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.06,
+    "p50": 0.12,
+    "p75": 0.2,
+    "brier": 0.0144,
+    "error": null
+}

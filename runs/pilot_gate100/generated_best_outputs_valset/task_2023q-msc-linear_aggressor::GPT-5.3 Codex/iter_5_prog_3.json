@@ -1,0 +1,13 @@
+{
+    "cell_key": "2023q-msc-linear_aggressor::GPT-5.3 Codex",
+    "cell_id": "ALL_j2_M=GPT-5.3 Codex_t=2023q-msc-linear_aggressor",
+    "task_id": "2023q-msc-linear_aggressor",
+    "model": "GPT-5.3 Codex",
+    "bin": 2,
+    "outcome": 1.0,
+    "p25": 0.38,
+    "p50": 0.55,
+    "p75": 0.72,
+    "brier": 0.20249999999999996,
+    "error": null
+}

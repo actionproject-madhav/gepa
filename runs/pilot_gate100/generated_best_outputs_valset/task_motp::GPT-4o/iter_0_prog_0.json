@@ -1,0 +1,13 @@
+{
+    "cell_key": "motp::GPT-4o",
+    "cell_id": "ALL_j2_M=GPT-4o_t=motp",
+    "task_id": "motp",
+    "model": "GPT-4o",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.1,
+    "p50": 0.2,
+    "p75": 0.32,
+    "brier": 0.04000000000000001,
+    "error": null
+}

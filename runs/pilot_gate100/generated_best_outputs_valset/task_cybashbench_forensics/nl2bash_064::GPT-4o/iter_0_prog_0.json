@@ -1,0 +1,13 @@
+{
+    "cell_key": "cybashbench_forensics/nl2bash_064::GPT-4o",
+    "cell_id": "ALL_j1_M=GPT-4o_t=cybashbench_forensics/nl2bash_064",
+    "task_id": "cybashbench_forensics/nl2bash_064",
+    "model": "GPT-4o",
+    "bin": 1,
+    "outcome": 1.0,
+    "p25": 0.85,
+    "p50": 0.9,
+    "p75": 0.95,
+    "brier": 0.009999999999999995,
+    "error": null
+}

@@ -1,0 +1,42 @@
+[92m19:21:41 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:22:07 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:23:24 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:23:45 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:24:26 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:24:50 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:25:35 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:26:00 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:27:28 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:27:48 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:29:11 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:29:39 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:30:24 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:30:51 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:31:36 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:32:07 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:33:01 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:33:32 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:34:21 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:34:46 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:35:37 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:36:01 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:37:24 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:37:50 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:38:43 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:39:10 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+[92m19:39:54 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m19:40:17 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler

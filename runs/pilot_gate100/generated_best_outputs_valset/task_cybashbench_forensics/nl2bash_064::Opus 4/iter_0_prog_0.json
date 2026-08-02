@@ -1,0 +1,13 @@
+{
+    "cell_key": "cybashbench_forensics/nl2bash_064::Opus 4",
+    "cell_id": "ALL_j1_M=Opus 4_t=cybashbench_forensics/nl2bash_064",
+    "task_id": "cybashbench_forensics/nl2bash_064",
+    "model": "Opus 4",
+    "bin": 1,
+    "outcome": 1.0,
+    "p25": 0.93,
+    "p50": 0.96,
+    "p75": 0.98,
+    "brier": 0.001600000000000003,
+    "error": null
+}

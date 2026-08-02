@@ -1,0 +1,13 @@
+{
+    "cell_key": "diffecient::Opus 4",
+    "cell_id": "ALL_j4_M=Opus 4_t=diffecient",
+    "task_id": "diffecient",
+    "model": "Opus 4",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.2,
+    "p50": 0.32,
+    "p75": 0.48,
+    "brier": 0.1024,
+    "error": null
+}

@@ -1,0 +1,13 @@
+{
+    "cell_key": "2015q-rev-ftp::Opus 4",
+    "cell_id": "ALL_j3_M=Opus 4_t=2015q-rev-ftp",
+    "task_id": "2015q-rev-ftp",
+    "model": "Opus 4",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.25,
+    "p50": 0.4,
+    "p75": 0.55,
+    "brier": 0.16000000000000003,
+    "error": null
+}
