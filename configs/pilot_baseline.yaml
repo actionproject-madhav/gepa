@@ -1,0 +1,39 @@
+# Independent baseline pilot run (Madhav). Same knobs as Jakub's
+# configs/forecaster_gepa_pilot.yaml — go/no-go diagnostics on the native
+# per-instance Pareto frontier, ~40 candidates, ~$25-40 real API spend.
+#
+# Differences from Jakub's pilot config, and why:
+#   - run_dir / manifest_path: point at this experiment's own folder + the
+#     one shared seed-42 manifest (runs/task_manifest_seed42.json), so every
+#     pilot variant we run is scored on the IDENTICAL val/train/finalist/test
+#     split and results are directly comparable.
+#   - wandb_entity: intentionally omitted (defaults to None in
+#     ForecasterGEPAConfig) so this logs under whichever personal W&B account
+#     is currently logged in via `wandb login` — no hardcoded username, so
+#     anyone can reuse this file under their own free-tier account.
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_baseline.yaml --phase optimize
+
+run_dir: runs/pilot_baseline
+manifest_path: runs/task_manifest_seed42.json
+
+# Finalist phase (run after optimize, same config):
+#   uv run python -m forecaster_gepa.run --config configs/pilot_baseline.yaml --phase finalist
+# Evaluates the top-5 candidates by val Brier PLUS the seed as a baseline on
+# the 21 reserved finalist tasks x the full 11-model panel (~230 cells each,
+# ~1,380 calls). This is spec section 8 metric 5 (finalist re-ranking
+# stability) — never run during the July optimize phase. Pre-declared
+# readout: does the seed->winner val gap (0.112 -> 0.094) survive on cells
+# that exerted zero selection pressure?
+finalist_include_seed: true
+
+max_iterations: 40
+max_metric_calls: 4000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42

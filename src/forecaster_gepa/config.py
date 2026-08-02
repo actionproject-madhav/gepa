@@ -165,6 +165,11 @@ class ForecasterGEPAConfig:
 
     # ---- finalist / test ----
     finalist_top_k: int = 5  # candidates re-ranked on the finalist set
+    # Also evaluate the SEED (candidate 0) on the finalist cells when it is
+    # not already in the top-k, as a baseline entry excluded from the
+    # ranking-stability stats — needed to tell "the winner generalises" apart
+    # from "the finalist set is just easier/harder". Default False = native.
+    finalist_include_seed: bool = False
 
     # ---- reproducibility / logging ----
     seed: int = 42

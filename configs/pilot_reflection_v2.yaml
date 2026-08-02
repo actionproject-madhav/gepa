@@ -1,0 +1,76 @@
+# REFLECTION-PROMPT experiment (E4, Madhav): identical to pilot_baseline in
+# every setting except ONE text — the instruction sent to the reflection LLM
+# (Opus) at the prompt-rewrite step.
+#
+# Question: the baseline's winning prompts mixed real forecasting principles
+# with overfit texture: numeric probability-band lookup tables (fixated in
+# 25/25 candidates from the first child on), rules naming platforms/artifacts
+# from single examples, and doctrinal anti-hedging ("avoid the 0.5 trap").
+# Is that texture CAUSED by our instruction ("achieve a lower Brier score",
+# full stop), or does Brier selection pressure produce it regardless?
+#
+# v2 keeps Brier as the stated objective and the three structural HARD
+# CONSTRAINTS verbatim; it replaces only the middle guidance: transferable
+# principles over example-fitted rules, no numeric bands, decisiveness earned
+# by evidence (not banned, not forced), consolidate instead of accrete.
+#
+# Pre-declared readout: prompt-rubric features (bands / platform rules /
+# anti-hedging) should drop while val Brier stays meaningfully above the
+# seed's 0.112. Rubric applied identically to the baseline's candidates.
+# Best-val Brier is NOT compared across runs as a ranking (single draws).
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_reflection_v2.yaml --phase optimize
+
+run_dir: runs/pilot_reflection_v2
+manifest_path: runs/task_manifest_seed42.json
+
+max_iterations: 40
+max_metric_calls: 4000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42
+
+# THE one change vs pilot_baseline (framing + HARD CONSTRAINTS identical to
+# DEFAULT_REFLECTION_PROMPT in src/forecaster_gepa/config.py; only the two
+# middle paragraphs differ).
+reflection_prompt_template: |
+  I provided an assistant with the following prompt template to perform a probabilistic forecasting task for me:
+  ```
+  <curr_param>
+  ```
+
+  The template is instantiated per task via Python str.format. The following are examples of instantiated prompts given to the assistant, the assistant's full response for each, and feedback comparing the forecast against the ground-truth outcome (Brier score on p50; lower is better, 0 is best, 1 is worst):
+  ```
+  <side_info>
+  ```
+
+  Your task is to write an improved prompt template for the assistant, so that its p50 forecasts achieve a lower Brier score against the binary ground truth — via better forecasting judgment that would transfer to unseen tasks, not via rules fitted to these particular examples.
+
+  Read the examples and feedback carefully. Identify systematic failure modes (e.g. over/under-confidence, ignoring the pass-rate evidence) and revise the template to address them, keeping the guidance general and brief:
+  - State principles for weighing evidence; do not add numeric probability bands or rules naming specific platforms, artifacts or task types from the examples — a pattern seen in one or two examples is usually noise.
+  - Forecasts should be exactly as decisive as the evidence warrants: neither hedged toward the middle, nor pushed to extremes.
+  - Prefer consolidating existing guidance over appending rules; the template should not grow with every revision.
+
+  You may restructure the template freely, subject to these HARD CONSTRAINTS:
+
+  1. The template must contain the literal placeholders {forecasted_model}, {capability_profile} and {target_task_text} exactly as written (single braces). Do not add any other placeholder in single braces; any other literal brace character must be doubled ({{ or }}).
+  2. The template must instruct the assistant to end its response with EXACTLY this XML structure (percentiles as probabilities in [0, 1]):
+
+  <rationale>
+  ...
+  </rationale>
+
+  <percentile_estimates>
+  <p25>0.xx</p25>
+  <p50>0.xx</p50>
+  <p75>0.xx</p75>
+  </percentile_estimates>
+
+  3. Do not mention difficulty bins, bin indices or held-out task sets.
+
+  Provide the new template within ``` blocks.

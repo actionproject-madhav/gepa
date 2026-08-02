@@ -1,0 +1,52 @@
+# GATE-SIZE experiment (Madhav): identical to pilot_baseline in every
+# setting except ONE number — the acceptance-gate minibatch grows from 20
+# cells (1 task/bin) to 100 cells (5 tasks/bin x 5 bins x 4 search models).
+#
+# Question: the baseline's 20-cell gate accepted children that were NOT
+# better on the 84-cell val set 40% of the time (gate_val_agreement 0.60,
+# spec section 8 metric 1 fired). The retrospective analysis of the baseline
+# logs (scripts/retrospective_gate_analysis.py) showed bad accepts won 7-11
+# of 20 cells — indistinguishable from good accepts at that sample size —
+# i.e. the gate is information-starved, not badly shaped. This run tests the
+# spec's "larger N" remedy at the largest empirically anchored size (Gate B
+# in the III_gepa_optimization PLAN measured 100 paired cells = 91% pairwise
+# decision accuracy on true gaps >= 0.01).
+#
+# Why 100 and not 40/60: per-cell scores are logged for every proposal, so a
+# 100-cell run lets us SUBSAMPLE (task-stratified) down to 20/40/60 offline
+# and recover the whole gate-reliability-vs-size curve from one run; smaller
+# runs cannot simulate upward. Per-decision quality only — trajectory
+# counterfactuals are not recoverable (documented in the script).
+#
+# Pre-declared primary readout: diagnostics/gate_val_agreement_running
+# (baseline ended 0.60; healthy >= ~0.8). Secondary: retro subsample curve,
+# frontier stats, prompt rubric. Best-val Brier is NOT compared across runs
+# (single stochastic draws).
+#
+# Known imperfections, accepted: bin 4's train pool is exactly 5 tasks, so
+# the same 5 hard tasks appear in every iteration's gate (no rotation in
+# that bin). Reflection still sees n_reflection_traces=20 traces, now
+# selected worst-k-stochastic from 100 instead of all-of-20 — an unavoidable
+# secondary change, documented.
+#
+# Cost: ~9,400-10,200 Sonnet cells + 40 Opus reflections (~2.5x baseline).
+# max_metric_calls raised so the budget cap does NOT bind before
+# max_iterations (40 iters x 200 gate cells + seed/accept val evals).
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_gate100.yaml --phase optimize
+
+run_dir: runs/pilot_gate100
+manifest_path: runs/task_manifest_seed42.json
+
+n_train_tasks_per_iter: 5   # THE one change: 5 tasks/bin -> 100-cell gate
+
+max_iterations: 40
+max_metric_calls: 11000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42

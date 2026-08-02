@@ -5,7 +5,10 @@ SaferAI intra-benchmark LLM-forecasting pipeline: it evolves the forecaster's
 prompt template to minimise the grand Brier score of its `p50` forecasts
 against binary (model, task) outcomes from the Lyptus data. Design background:
 `GEPA_experiment_design_summary.md` (task allocation, gate/val/finalist/test
-sets, diagnostic metrics).
+sets, diagnostic metrics). Every run kicked off against this repo (config,
+run_dir, question, status, result) is tracked in `FORECASTER_GEPA_RUNS.md` —
+check it before starting a new run to avoid duplicating one that already
+exists.
 
 The **GEPA core (`src/gepa/`) is unchanged upstream code** apart from one
 resume optimisation (see "Changes to this fork" below). Everything

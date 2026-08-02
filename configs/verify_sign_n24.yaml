@@ -1,0 +1,6 @@
+# Re-run of verify-sign at 3x the default n_cells (8 -> 24) after the
+# default-N run showed a near-tied, sign-inconclusive result. Confirmed the
+# seed clearly beats the deliberately-bad prompt once sample noise is reduced
+# (see runs/verify_sign_n24/verify_sign.json).
+verify_sign_n_cells: 24
+manifest_path: runs/task_manifest_seed42.json
