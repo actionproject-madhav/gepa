@@ -64,16 +64,20 @@
     "max_iterations": 40,
     "use_merge": false,
     "selection_strategy": "pareto",
+    "acceptance_criterion": "aggregate_sum",
+    "acceptance_min_task_wins": 6,
+    "acceptance_margin_tau": 0.0,
     "n_reflection_traces": 20,
     "reflection_trace_selection": "worst_k_stochastic",
     "reflection_selection_temperature": 0.5,
     "reflection_prompt_template": "I provided an assistant with the following prompt template to perform a probabilistic forecasting task for me:\n```\n<curr_param>\n```\n\nThe template is instantiated per task via Python str.format. The following are examples of instantiated prompts given to the assistant, the assistant's full response for each, and feedback comparing the forecast against the ground-truth outcome (Brier score on p50; lower is better, 0 is best, 1 is worst):\n```\n<side_info>\n```\n\nYour task is to write an improved prompt template for the assistant, so that its p50 forecasts achieve a lower Brier score against the binary ground truth.\n\nRead the examples and feedback carefully. Identify systematic failure modes (e.g. over/under-confidence, ignoring the pass-rate evidence, miscalibration on hard or easy tasks) and revise the template to address them. You may restructure the template freely, subject to these HARD CONSTRAINTS:\n\n1. The template must contain the literal placeholders {forecasted_model}, {capability_profile} and {target_task_text} exactly as written (single braces). Do not add any other placeholder in single braces; any other literal brace character must be doubled ({{ or }}).\n2. The template must instruct the assistant to end its response with EXACTLY this XML structure (percentiles as probabilities in [0, 1]):\n\n<rationale>\n...\n</rationale>\n\n<percentile_estimates>\n<p25>0.xx</p25>\n<p50>0.xx</p50>\n<p75>0.xx</p75>\n</percentile_estimates>\n\n3. Do not mention difficulty bins, bin indices or held-out task sets.\n\nProvide the new template within ``` blocks.",
     "failure_score": -1.0,
     "finalist_top_k": 5,
+    "finalist_include_seed": true,
     "seed": 42,
     "wandb_project": "gepa-forecaster",
     "wandb_entity": null,
-    "use_wandb": true,
+    "use_wandb": false,
     "track_best_outputs": true,
     "expected_estimator_branch": "feat/ss2026_intrabenchmark_package",
     "wandb_checkpoint_every": 10,
@@ -83,15 +87,15 @@
     "verify_sign_n_cells": 8
   },
   "gepa_fork_git": {
-    "sha": "ebcb9cc4577e8ae44bcaee96a7a579cffb62bcdb",
-    "branch": "feat/gepa_on_LLM_estimator",
+    "sha": "b5d8ca724d91a47155b2ab8ebbf64e1548ea2d33",
+    "branch": "results/ladder-2026-08-02",
     "dirty": true
   },
-  "llm_estimator_repo": "/Users/madhav/SaferAI/LLM_elicitation",
+  "llm_estimator_repo": "/home/user/LLM_elicitation",
   "llm_estimator_git": {
     "sha": "1ef1f98070c4fa88f980a1e156669802bd5b1909",
     "branch": "feat/ss2026_intrabenchmark_package",
-    "dirty": true
+    "dirty": false
   },
   "seed_template": "You are forecasting whether {forecasted_model} will solve a target task on a single attempt under this benchmark's standard evaluation.\n\nBelow are tasks from the same benchmark, each tagged with whether {forecasted_model} actually solved it:\n\n{capability_profile}\n\nTarget task:\n{target_task_text}\n\nEstimate the probability that {forecasted_model} solves the target task on a single attempt. Report three percentiles of your subjective probability distribution using EXACTLY this format:\n\n<rationale>\nYour rationale here.\n</rationale>\n\n<percentile_estimates>\n<p25>0.xx</p25>\n<p50>0.xx</p50>\n<p75>0.xx</p75>\n</percentile_estimates>\n"
 }
