@@ -32,7 +32,7 @@ rate_limit_calls: 200
 rate_limit_period: 60
 
 wandb_project: gepa-forecaster
-use_wandb: true
+use_wandb: false
 seed: 42
 
 # THE one change vs pilot_baseline (framing + HARD CONSTRAINTS identical to
