@@ -122,9 +122,14 @@ Stage 0 — setup:
   configs/pilot_baseline_ext80.yaml (the ONLY permitted config edit).
 - git checkout -b results/measurement-2026-08-03
 
-Stage 1 — repeated-measurement noise study (~4,450 calls, ~45-60 min):
-- uv run python scripts/val_noise_study.py --repeats-val 5 --repeats-sealed 3
-- git add -f runs/noise_study/  ; commit; push.
+Stage 1 — repeated-measurement study, three arms (~6,800 calls, ~1.5 h):
+- Arm A (noise floor + failure rates, temp 1.0):
+  uv run python scripts/val_noise_study.py --repeats-val 5 --repeats-sealed 3 --tag main
+- Arm B (positive control — instrument validity):
+  uv run python scripts/val_noise_study.py --prompts-dir configs/noise_study_prompts_controls --repeats-val 3 --repeats-sealed 0 --tag control
+- Arm C (temperature 0 — is the noise killable?):
+  uv run python scripts/val_noise_study.py --prompts seed,july_cand20,july_cand12 --temperature 0 --repeats-val 3 --repeats-sealed 2 --tag temp0
+- git add -f runs/noise_study/  ; commit; push after EACH arm completes.
 
 Stage 2 — baseline extension to 80 iterations (~2,700-3,000 calls, ~1 h):
 - mkdir -p runs/pilot_baseline_ext80
@@ -141,9 +146,13 @@ produced any candidate with val Brier better than 0.0937 (July's best):
 - git add -f the finalist_*.{json,jsonl} files; commit; push.
 
 Final report, one message:
-1. The full runs/noise_study/noise_summary.txt table, plus: for each repeat
-   r, the paired difference (seed repeat r minus july_cand20 repeat r) on
-   the sealed set — is july_cand20 better in every repeat?
+1. All three noise_summary_*.txt tables, plus, computed from
+   noise_cells_*.jsonl: (a) per prompt per set: parse-failure count per
+   repeat AND the parsed-only grand Brier next to the operational one;
+   (b) the paired difference (seed repeat r minus july_cand20 repeat r) on
+   the sealed set for each r — is july_cand20 better in every repeat?;
+   (c) arm C: does temperature 0 reduce the between-repeat sd and the
+   failure count, and does july_cand12's edge over seed survive at temp 0?
 2. Stage 2: the "Optimisation finished" line; how many new accepts in
    iterations 41-80; the new best val Brier and which candidate; the last
    diagnostics record.

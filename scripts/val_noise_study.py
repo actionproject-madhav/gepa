@@ -56,14 +56,22 @@ def main() -> int:
     ap.add_argument("--repeats-sealed", type=int, default=3)
     ap.add_argument("--out", default=str(REPO / "runs/noise_study"))
     ap.add_argument("--limit-cells", type=int, default=None, help="smoke-testing only")
+    ap.add_argument("--temperature", type=float, default=None, help="override forecaster temperature")
+    ap.add_argument("--prompts", default=None, help="comma-separated stem filter, e.g. seed,july_cand20")
+    ap.add_argument("--tag", default="main", help="suffix for output files so arms do not clobber")
     args = ap.parse_args()
 
     cfg = load_config(args.config)
+    if args.temperature is not None:
+        cfg.temperature = args.temperature
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    cells_path = out / "noise_cells.jsonl"
+    cells_path = out / f"noise_cells_{args.tag}.jsonl"
 
     prompts = sorted(Path(args.prompts_dir).glob("*.txt"))
+    if args.prompts:
+        keep = {n.strip() for n in args.prompts.split(",")}
+        prompts = [p for p in prompts if p.stem in keep]
     assert prompts, f"no .txt prompts in {args.prompts_dir}"
     data = ExperimentData(cfg)
 
@@ -108,8 +116,8 @@ def main() -> int:
                          f"{statistics.mean(gs):.4f}  {sd:.4f}")
     report = "\n".join(lines)
     print("\n" + report)
-    (out / "noise_summary.txt").write_text(report + "\n", encoding="utf-8")
-    (out / "noise_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (out / f"noise_summary_{args.tag}.txt").write_text(report + "\n", encoding="utf-8")
+    (out / f"noise_summary_{args.tag}.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     return 0
 
 
