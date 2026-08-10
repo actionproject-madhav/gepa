@@ -122,14 +122,17 @@ Stage 0 — setup:
   configs/pilot_baseline_ext80.yaml (the ONLY permitted config edit).
 - git checkout -b results/measurement-2026-08-03
 
-Stage 1 — repeated-measurement study, three arms (~6,800 calls, ~1.5 h):
-- Arm A (noise floor + failure rates, temp 1.0):
+Stage 1 — repeated-measurement study, three arms (~6,800 calls, ~1.5 h).
+Run in THIS order (most decisive first) and commit+push runs/noise_study/
+after EACH arm completes:
+- Arm C first (temperature 0 — is the sd=0.0065 sampling noise killable?):
+  uv run python scripts/val_noise_study.py --prompts seed,july_cand20,july_cand12 --temperature 0 --repeats-val 3 --repeats-sealed 2 --tag temp0
+- Arm A (noise floor + per-prompt failure rates, temp 1.0; the seed's val
+  part replicates a local 5-repeat measurement that found sd 0.0065 —
+  agreement between machines is itself a check):
   uv run python scripts/val_noise_study.py --repeats-val 5 --repeats-sealed 3 --tag main
 - Arm B (positive control — instrument validity):
   uv run python scripts/val_noise_study.py --prompts-dir configs/noise_study_prompts_controls --repeats-val 3 --repeats-sealed 0 --tag control
-- Arm C (temperature 0 — is the noise killable?):
-  uv run python scripts/val_noise_study.py --prompts seed,july_cand20,july_cand12 --temperature 0 --repeats-val 3 --repeats-sealed 2 --tag temp0
-- git add -f runs/noise_study/  ; commit; push after EACH arm completes.
 
 Stage 2 — baseline extension to 80 iterations (~2,700-3,000 calls, ~1 h):
 - mkdir -p runs/pilot_baseline_ext80
@@ -152,7 +155,9 @@ Final report, one message:
    (b) the paired difference (seed repeat r minus july_cand20 repeat r) on
    the sealed set for each r — is july_cand20 better in every repeat?;
    (c) arm C: does temperature 0 reduce the between-repeat sd and the
-   failure count, and does july_cand12's edge over seed survive at temp 0?
+   failure count, and does july_cand12's edge over seed survive at temp 0?;
+   (d) arm A seed val sd side by side with the locally measured 0.0065
+   (5 repeats, 2026-08-03) — do the two machines agree?
 2. Stage 2: the "Optimisation finished" line; how many new accepts in
    iterations 41-80; the new best val Brier and which candidate; the last
    diagnostics record.
