@@ -24,6 +24,10 @@
 run_dir: runs/pilot_reflection_v2
 manifest_path: runs/task_manifest_seed42.json
 
+# Finalist phase (sealed-cell check of this run's winner, same as E1):
+#   uv run python -m forecaster_gepa.run --config configs/pilot_reflection_v2.yaml --phase finalist
+finalist_include_seed: true
+
 max_iterations: 40
 max_metric_calls: 4000
 

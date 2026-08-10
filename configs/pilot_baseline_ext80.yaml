@@ -1,0 +1,32 @@
+# EXTENSION of pilot_baseline (Jakub's request 2026-08-03): resume the July
+# checkpoint and continue optimization from iteration 41 to 80, doubling the
+# proposal count. Run in a COPY of the run dir so the archived July artifact
+# is never mutated:
+#   mkdir -p runs/pilot_baseline_ext80
+#   cp runs/pilot_baseline/gepa_state.bin runs/pilot_baseline_ext80/
+#   uv run python -m forecaster_gepa.run --config configs/pilot_baseline_ext80.yaml --phase optimize
+#
+# Pre-declared caveat (see FORECASTER_GEPA_RUNS.md): best-so-far val Brier
+# is a running MINIMUM over ~single-draw measurements with ~±0.015 noise, so
+# it drifts down with more candidates even under zero real improvement
+# (noise harvesting). Any new "best" from this run counts ONLY if it
+# survives the sealed finalist check (phase finalist below).
+#
+# Cost: ~40 iterations x 40 gate cells + accepts x 84 val cells ~= 2,700-3,000
+# calls (seed val re-eval is skipped on resume).
+
+run_dir: runs/pilot_baseline_ext80
+manifest_path: runs/task_manifest_seed42.json
+
+max_iterations: 80
+max_metric_calls: 8500
+
+finalist_include_seed: true
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42

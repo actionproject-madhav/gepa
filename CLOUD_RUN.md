@@ -106,6 +106,51 @@ a row, skip it, record the error, and continue with the next stage; before
 the session ends for any reason, commit and push whatever exists.
 ```
 
+## Measurement-study session prompt (2026-08-03: noise study + baseline extension)
+
+Paste into a fresh cloud session (secrets + network as above):
+
+```
+Run `git pull origin feat/gepa_on_LLM_estimator` first. Then execute these
+stages autonomously, in order, without stopping to ask anything. Never edit
+source code, configs (except the single use_wandb flip below), seeds, or the
+manifest. Push results before the session ends no matter what.
+
+Stage 0 — setup:
+- bash scripts/cloud_setup.sh   (must end "Setup OK")
+- If WANDB_API_KEY is missing, set use_wandb: false in
+  configs/pilot_baseline_ext80.yaml (the ONLY permitted config edit).
+- git checkout -b results/measurement-2026-08-03
+
+Stage 1 — repeated-measurement noise study (~4,450 calls, ~45-60 min):
+- uv run python scripts/val_noise_study.py --repeats-val 5 --repeats-sealed 3
+- git add -f runs/noise_study/  ; commit; push.
+
+Stage 2 — baseline extension to 80 iterations (~2,700-3,000 calls, ~1 h):
+- mkdir -p runs/pilot_baseline_ext80
+- cp runs/pilot_baseline/gepa_state.bin runs/pilot_baseline_ext80/
+- uv run python -m forecaster_gepa.run --config configs/pilot_baseline_ext80.yaml --phase optimize
+- If interrupted, rerun the same command (exact resume). Never restart fresh.
+- git add -f everything in runs/pilot_baseline_ext80/ EXCEPT gate_traces.jsonl; commit; push.
+- Also commit and push the run dir (excluding gate_traces.jsonl) every ~20
+  minutes WHILE stage 2 runs.
+
+Stage 3 — conditional sealed check (~1,400 calls, ~20 min): ONLY IF stage 2
+produced any candidate with val Brier better than 0.0937 (July's best):
+- uv run python -m forecaster_gepa.run --config configs/pilot_baseline_ext80.yaml --phase finalist
+- git add -f the finalist_*.{json,jsonl} files; commit; push.
+
+Final report, one message:
+1. The full runs/noise_study/noise_summary.txt table, plus: for each repeat
+   r, the paired difference (seed repeat r minus july_cand20 repeat r) on
+   the sealed set — is july_cand20 better in every repeat?
+2. Stage 2: the "Optimisation finished" line; how many new accepts in
+   iterations 41-80; the new best val Brier and which candidate; the last
+   diagnostics record.
+3. Stage 3 (if run): finalist_results.json content.
+4. Total calls across stages.
+```
+
 ## Caveats
 
 - Research-preview sandboxes may have session/wall-clock limits; a killed
