@@ -106,7 +106,34 @@ a row, skip it, record the error, and continue with the next stage; before
 the session ends for any reason, commit and push whatever exists.
 ```
 
-## Measurement-study session prompt (2026-08-03: noise study + baseline extension)
+## PRIORITY session prompt (2026-08-03: the three certain-value checks — run this one first)
+
+Three checks, ~$25-30 total, ~45-60 min: (1) temperature-0 — is the measured
+sd=0.0065 sampling noise killable, and do the good prompts keep their edges
+under deterministic decoding; (2) sealed re-check of candidate 20 — the
+project's single verified improvement currently rests on one sealed pass;
+(3) always-0.99 control — instrument validity. Paste into a fresh session:
+
+```
+Run `git pull origin feat/gepa_on_LLM_estimator`, then `bash scripts/cloud_setup.sh`
+(must end "Setup OK"), then `git checkout -b results/priority-2026-08-03`.
+Execute these three runs in this exact order, autonomously, committing and
+pushing runs/noise_study/ after EACH one. Never edit code, configs, seeds, or
+the manifest.
+
+1. uv run python scripts/val_noise_study.py --prompts seed,july_cand20,july_cand12 --temperature 0 --repeats-val 3 --repeats-sealed 2 --tag temp0
+2. uv run python scripts/val_noise_study.py --prompts seed,july_cand20 --repeats-val 0 --repeats-sealed 3 --tag sealed_check
+3. uv run python scripts/val_noise_study.py --prompts-dir configs/noise_study_prompts_controls --repeats-val 3 --repeats-sealed 0 --tag control
+
+Final report: all three noise_summary_*.txt tables, plus from the cells files:
+(a) temp0 — between-repeat spread per prompt, failure counts, and whether
+cand20/cand12 still beat the seed; (b) sealed_check — the paired per-cell
+difference (seed minus july_cand20) for each repeat pairing — is cand20
+better in all three repeats?; (c) control — the gap vs the seed's known
+~0.10 with all repeat values. Push everything before ending.
+```
+
+## Measurement-study session prompt (2026-08-03: noise study + baseline extension — DEFERRED until the priority session reports)
 
 Paste into a fresh cloud session (secrets + network as above):
 
