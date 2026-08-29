@@ -1,0 +1,13 @@
+{
+    "cell_key": "2020q-pwn-roppity::GPT-4o",
+    "cell_id": "ALL_j3_M=GPT-4o_t=2020q-pwn-roppity",
+    "task_id": "2020q-pwn-roppity",
+    "model": "GPT-4o",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.02,
+    "p50": 0.06,
+    "p75": 0.12,
+    "brier": 0.0036,
+    "error": null
+}

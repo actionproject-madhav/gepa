@@ -1,0 +1,13 @@
+{
+    "cell_key": "motp::Opus 4",
+    "cell_id": "ALL_j2_M=Opus 4_t=motp",
+    "task_id": "motp",
+    "model": "Opus 4",
+    "bin": 2,
+    "outcome": 1.0,
+    "p25": 0.25,
+    "p50": 0.4,
+    "p75": 0.55,
+    "brier": 0.36,
+    "error": null
+}

@@ -1,0 +1,13 @@
+{
+    "cell_key": "diffecient::GPT-4o",
+    "cell_id": "ALL_j4_M=GPT-4o_t=diffecient",
+    "task_id": "diffecient",
+    "model": "GPT-4o",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.04,
+    "p50": 0.08,
+    "p75": 0.14,
+    "brier": 0.0064,
+    "error": null
+}

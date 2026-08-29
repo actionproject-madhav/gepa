@@ -1,0 +1,13 @@
+{
+    "cell_key": "noisy_crc::GPT-5.3 Codex",
+    "cell_id": "ALL_j2_M=GPT-5.3 Codex_t=noisy_crc",
+    "task_id": "noisy_crc",
+    "model": "GPT-5.3 Codex",
+    "bin": 2,
+    "outcome": 1.0,
+    "p25": 0.25,
+    "p50": 0.42,
+    "p75": 0.6,
+    "brier": 0.3364000000000001,
+    "error": null
+}

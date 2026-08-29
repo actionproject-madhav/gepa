@@ -1,0 +1,13 @@
+{
+    "cell_key": "2022q-cry-gotta_crack_them_all::GPT-5.3 Codex",
+    "cell_id": "ALL_j3_M=GPT-5.3 Codex_t=2022q-cry-gotta_crack_them_all",
+    "task_id": "2022q-cry-gotta_crack_them_all",
+    "model": "GPT-5.3 Codex",
+    "bin": 3,
+    "outcome": 1.0,
+    "p25": 0.45,
+    "p50": 0.62,
+    "p75": 0.78,
+    "brier": 0.1444,
+    "error": null
+}

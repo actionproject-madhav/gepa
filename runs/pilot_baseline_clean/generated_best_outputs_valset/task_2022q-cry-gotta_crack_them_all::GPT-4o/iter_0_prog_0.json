@@ -1,0 +1,13 @@
+{
+    "cell_key": "2022q-cry-gotta_crack_them_all::GPT-4o",
+    "cell_id": "ALL_j3_M=GPT-4o_t=2022q-cry-gotta_crack_them_all",
+    "task_id": "2022q-cry-gotta_crack_them_all",
+    "model": "GPT-4o",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.12,
+    "p50": 0.22,
+    "p75": 0.35,
+    "brier": 0.0484,
+    "error": null
+}

@@ -1,0 +1,13 @@
+{
+    "cell_key": "2023q-msc-linear_aggressor::Gemini 2.5 Pro",
+    "cell_id": "ALL_j2_M=Gemini 2.5 Pro_t=2023q-msc-linear_aggressor",
+    "task_id": "2023q-msc-linear_aggressor",
+    "model": "Gemini 2.5 Pro",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.04,
+    "p50": 0.09,
+    "p75": 0.17,
+    "brier": 0.0081,
+    "error": null
+}

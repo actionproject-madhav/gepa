@@ -1,0 +1,13 @@
+{
+    "cell_key": "2020q-pwn-roppity::GPT-5.3 Codex",
+    "cell_id": "ALL_j3_M=GPT-5.3 Codex_t=2020q-pwn-roppity",
+    "task_id": "2020q-pwn-roppity",
+    "model": "GPT-5.3 Codex",
+    "bin": 3,
+    "outcome": 1.0,
+    "p25": 0.55,
+    "p50": 0.72,
+    "p75": 0.85,
+    "brier": 0.07840000000000001,
+    "error": null
+}

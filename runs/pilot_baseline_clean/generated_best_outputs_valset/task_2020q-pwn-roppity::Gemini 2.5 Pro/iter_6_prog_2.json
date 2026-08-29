@@ -1,0 +1,13 @@
+{
+    "cell_key": "2020q-pwn-roppity::Gemini 2.5 Pro",
+    "cell_id": "ALL_j3_M=Gemini 2.5 Pro_t=2020q-pwn-roppity",
+    "task_id": "2020q-pwn-roppity",
+    "model": "Gemini 2.5 Pro",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.03,
+    "p50": 0.08,
+    "p75": 0.18,
+    "brier": 0.0064,
+    "error": null
+}

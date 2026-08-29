@@ -1,0 +1,13 @@
+{
+    "cell_key": "cybashbench_misc/mcq_229::Opus 4",
+    "cell_id": "ALL_j0_M=Opus 4_t=cybashbench_misc/mcq_229",
+    "task_id": "cybashbench_misc/mcq_229",
+    "model": "Opus 4",
+    "bin": 0,
+    "outcome": 1.0,
+    "p25": 0.99,
+    "p50": 0.99,
+    "p75": 0.99,
+    "brier": 0.00010000000000000018,
+    "error": null
+}
