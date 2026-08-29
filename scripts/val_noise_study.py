@@ -64,6 +64,9 @@ def main() -> int:
     cfg = load_config(args.config)
     if args.temperature is not None:
         cfg.temperature = args.temperature
+    # This script MEASURES failures (they are part of the noise being
+    # studied): record them per-cell instead of tripping the run halt.
+    cfg.halt_on_cell_failure = False
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cells_path = out / f"noise_cells_{args.tag}.jsonl"

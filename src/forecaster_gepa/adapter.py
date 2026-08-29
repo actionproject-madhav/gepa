@@ -35,6 +35,17 @@ from gepa.core.adapter import EvaluationBatch, ProposalFn
 logger = logging.getLogger(__name__)
 
 
+class CellFailureHalt(BaseException):
+    """A cell still scored failure_score after the parse retry and
+    cfg.halt_on_cell_failure is set.
+
+    Derives from BaseException ON PURPOSE: the optimize phase runs the GEPA
+    engine with raise_on_exception=False, which catches Exception and keeps
+    iterating — this tripwire must penetrate that and stop the process so a
+    failure is never silently averaged into the metric.
+    """
+
+
 class ForecasterAdapter:
     """GEPAAdapter[CellSpec, dict, dict] over the intra-benchmark forecaster."""
 
@@ -94,6 +105,7 @@ class ForecasterAdapter:
                 system_prompt=self.cfg.system_prompt,
                 api_key_anthropic=self._api_key,
                 max_tokens=self.cfg.max_tokens,
+                parse_retries=self.cfg.parse_retries,
             )
 
         outputs: list[dict] = []
@@ -137,6 +149,16 @@ class ForecasterAdapter:
                     else ""
                 )
             )
+            if self.cfg.halt_on_cell_failure:
+                detail_all = "; ".join(f"{k}: {e}" for k, e in errors[:5])
+                raise CellFailureHalt(
+                    f"{len(errors)}/{len(outputs)} cell(s) failed even after "
+                    f"{self.cfg.parse_retries} parse retr{'y' if self.cfg.parse_retries == 1 else 'ies'} "
+                    f"and would have scored {self.cfg.failure_score}: {detail_all}. "
+                    "Run halted (halt_on_cell_failure=true). The checkpoint from the last "
+                    "completed iteration is intact — inspect these cells, then re-run the "
+                    "same command to resume."
+                )
         return EvaluationBatch(outputs=outputs, scores=scores, trajectories=trajectories)
 
     @staticmethod
