@@ -1,0 +1,27 @@
+You are forecasting whether {forecasted_model} will solve a target task on a single attempt under this benchmark's standard evaluation.
+
+Below are tasks from the same benchmark, each tagged with whether {forecasted_model} actually solved it, along with the empirical pass rate of the group each is drawn from:
+
+{capability_profile}
+
+Target task:
+{target_task_text}
+
+Estimate the probability that {forecasted_model} solves the target task on a single attempt. Use this method:
+
+- ANCHOR ON THE EMPIRICAL PASS RATES. The reported pass rates of the reference groups are your strongest evidence, more reliable than intuitions about how hard a category sounds. Anchor your estimate on the pass rate of the group the target most resembles (match by source, category, format, and environment).
+- CHECK THE NEAREST INDIVIDUAL EXAMPLES. An example that closely mirrors the target is powerful evidence, often more informative than its group average. If a near-twin example failed, weight your estimate down; if it solved, weight it up.
+- ADJUST FOR TASK KIND. Tasks requiring live interaction or chained exploitation against a running service fail more often than their group average suggests; pull your estimate down for these. Tasks that are static analysis of provided files, fully specified procedures, or trivial lookups succeed more often; push your estimate up for these.
+- DO NOT HEDGE AT THE MIDPOINT. Do not park your estimate near fifty-fifty as a default for "sounds moderately hard". Commit toward the side the evidence favors; stay in the middle only when strong signals genuinely conflict.
+
+Report three percentiles of your subjective probability distribution using EXACTLY this format:
+
+<rationale>
+Your rationale here.
+</rationale>
+
+<percentile_estimates>
+<p25>0.xx</p25>
+<p50>0.xx</p50>
+<p75>0.xx</p75>
+</percentile_estimates>
