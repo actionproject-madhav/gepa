@@ -95,6 +95,14 @@ class ForecasterGEPAConfig:
 
     # ---- forecaster call settings ----
     temperature: float = 1.0
+    # On an unparsable response (no <p50>), the estimation API re-samples the
+    # cell this many times before scoring it failure_score. Format typos are
+    # temperature-sampling noise (~1-2% of calls for long evolved prompts at
+    # temperature 1.0), and the Brier-1.0 penalty is worth ~9 ordinary cells,
+    # so without the retry the penalty lands almost entirely on evolved
+    # candidates (the short seed prompt essentially never fails). See the
+    # 2026-08 parse-failure audit (scripts/parse_failure_audit.py).
+    parse_retries: int = 1
     reasoning_effort: str = "off"
     max_concurrent_calls: int = 10
     rate_limit_calls: int = 200
@@ -162,9 +170,21 @@ class ForecasterGEPAConfig:
     # cannot be parsed (or whose template fails to format) score -1.0, the
     # worst possible -Brier.
     failure_score: float = -1.0
+    # Tripwire (Jakub, 2026-08 audit follow-up): if any cell STILL fails
+    # after the parse retry, halt the run instead of silently folding a
+    # worst-possible score into the metric. The checkpoint from the last
+    # completed iteration is intact — inspect the logged cells, then re-run
+    # the same command to resume. Measurement scripts that deliberately
+    # STUDY failures (scripts/val_noise_study.py) turn this off.
+    halt_on_cell_failure: bool = True
 
     # ---- finalist / test ----
     finalist_top_k: int = 5  # candidates re-ranked on the finalist set
+    # Also evaluate the SEED (candidate 0) on the finalist cells when it is
+    # not already in the top-k, as a baseline entry excluded from the
+    # ranking-stability stats — needed to tell "the winner generalises" apart
+    # from "the finalist set is just easier/harder". Default False = native.
+    finalist_include_seed: bool = False
 
     # ---- reproducibility / logging ----
     seed: int = 42

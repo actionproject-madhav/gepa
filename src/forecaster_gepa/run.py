@@ -277,14 +277,21 @@ def phase_finalist(cfg: ForecasterGEPAConfig, data: ExperimentData, run_dir: Pat
     candidates, val_scores = _load_candidates_from_state(run_dir)
     order = sorted(range(len(candidates)), key=lambda i: val_scores[i], reverse=True)
     top = order[: cfg.finalist_top_k]
+    # The seed rides along as a baseline entry (same cells, excluded from the
+    # ranking-stability stats below) when finalist_include_seed is set.
+    eval_idxs = list(top)
+    if cfg.finalist_include_seed and 0 not in eval_idxs:
+        eval_idxs.append(0)
     logger.info(f"Finalist re-ranking of candidates {top} on the finalist set (full panel).")
+    if eval_idxs != top:
+        logger.info("Also evaluating the seed (candidate 0) on the finalist cells as a baseline.")
 
     plans, specs = data.finalist_phase()
     adapter = ForecasterAdapter(plans, cfg, stub=cfg.dry_run)
     cells_path = run_dir / "finalist_cells.jsonl"
 
     entries = []
-    for idx in top:
+    for idx in eval_idxs:
         eb = adapter.evaluate(specs, candidates[idx], capture_traces=False)
         _write_cells_jsonl(cells_path, idx, eb.outputs)
         entries.append(
@@ -297,16 +304,20 @@ def phase_finalist(cfg: ForecasterGEPAConfig, data: ExperimentData, run_dir: Pat
             }
         )
 
-    val_rank = [-e["val_brier"] for e in entries]
-    fin_rank = [-e["finalist_brier"] for e in entries]
-    rho_raw: Any = scipy_stats.spearmanr(val_rank, fin_rank)[0] if len(entries) >= 3 else float("nan")
+    # Ranking-stability stats over the top-k only; a seed baseline entry
+    # (finalist_include_seed) is reported in `entries` but never ranked.
+    ranked = [e for e in entries if e["candidate_idx"] in top]
+    val_rank = [-e["val_brier"] for e in ranked]
+    fin_rank = [-e["finalist_brier"] for e in ranked]
+    rho_raw: Any = scipy_stats.spearmanr(val_rank, fin_rank)[0] if len(ranked) >= 3 else float("nan")
     rho = float(rho_raw)
-    winner = min(entries, key=lambda e: e["finalist_brier"])
+    winner = min(ranked, key=lambda e: e["finalist_brier"])
     results = {
         "top_k_by_val": top,
         "entries": entries,
+        "seed_included_as_baseline": eval_idxs != top,
         "val_vs_finalist_spearman": rho,
-        "ranking_preserved": [e["candidate_idx"] for e in sorted(entries, key=lambda e: e["finalist_brier"])] == top,
+        "ranking_preserved": [e["candidate_idx"] for e in sorted(ranked, key=lambda e: e["finalist_brier"])] == top,
         "winner_candidate_idx": winner["candidate_idx"],
     }
     with (run_dir / "finalist_results.json").open("w", encoding="utf-8") as fh:
