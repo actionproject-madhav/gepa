@@ -5,7 +5,10 @@ SaferAI intra-benchmark LLM-forecasting pipeline: it evolves the forecaster's
 prompt template to minimise the grand Brier score of its `p50` forecasts
 against binary (model, task) outcomes from the Lyptus data. Design background:
 `GEPA_experiment_design_summary.md` (task allocation, gate/val/finalist/test
-sets, diagnostic metrics).
+sets, diagnostic metrics). Every run kicked off against this repo (config,
+run_dir, question, status, result) is tracked in `FORECASTER_GEPA_RUNS.md` —
+check it before starting a new run to avoid duplicating one that already
+exists.
 
 The **GEPA core (`src/gepa/`) is unchanged upstream code** apart from one
 resume optimisation (see "Changes to this fork" below). Everything
@@ -32,6 +35,10 @@ the editable package `llm-estimator` (see its `README_GEPA.md`).
 | `configs/forecaster_gepa_pilot.yaml` | Small real-API pilot, native acceptance gate (go/no-go diagnostics)   |
 | `configs/forecaster_gepa_pilot_taskwin.yaml` | Same pilot, joint acceptance gate (aggregate AND ≥k task wins) |
 | `configs/seed_prompt_minimal.txt`    | The GEPA seed prompt (minimal single-call template, rationale first)  |
+| `configs/pilot_*.yaml`, `configs/verify_sign_n24.yaml` | One committed, commented config per run — the run's question and result live in `FORECASTER_GEPA_RUNS.md` |
+| `configs/noise_study_prompts*/`      | Frozen prompt texts the measurement scripts evaluate (seed, measured winners, sabotage control, single-feature ablation arms) |
+| `runs/task_manifest_seed42.json`     | The frozen seed-42 task split every config points at (identical gate/val/finalist/test cells across all runs) |
+| `scripts/`                           | Measurement + offline-analysis tools (section below)                  |
 
 
 ## Changes to this fork vs upstream
@@ -43,6 +50,19 @@ re-evaluation is skipped (its scores are already in the checkpoint). No
 algorithmic change; saves 84 API calls per restart.
 - `pyrightconfig.json`: `extraPaths` so pyright resolves the editable install.
 - Everything else new is under `src/forecaster_gepa/` + `configs/`.
+
+Three forecaster knobs added after the 2026-08 parse-failure audit (full
+rationale in `config.py` comments):
+
+- `parse_retries` (default 1): an unparsable response is re-sampled once
+  before scoring, instead of scoring Brier 1.0 (~9 ordinary cells of
+  penalty, which landed almost entirely on evolved candidates).
+- `halt_on_cell_failure` (default true): a cell that STILL fails after the
+  retry halts the run loudly; checkpoint intact, re-running the same
+  command resumes. Measurement scripts opt out (they study failures).
+- `finalist_include_seed` (default false): `--phase finalist` also scores
+  the seed on the finalist cells as a baseline row, excluded from the
+  ranking stats.
 
 ## One-time setup
 
@@ -363,3 +383,21 @@ evidence. Don't add them when editing prompt construction.
 - Changing `seed` invalidates an existing manifest (the harness refuses to
 mix a manifest built under a different seed — use a fresh `run_dir`).
 
+
+
+## Measurement & analysis scripts
+
+The optimisation phases above produce runs; these tools measure and dissect
+them. All read committed logs or call the API directly; none mutate runs.
+
+| Script | What it does | Reproduce |
+| --- | --- | --- |
+| `scripts/val_noise_study.py` | Repeated evaluation of fixed prompts on the val/finalist cells — the reliable instrument (single val passes have rerun sd ≈ 0.0065) | `uv run python scripts/val_noise_study.py --config configs/pilot_baseline_clean.yaml --prompts seed,july_cand12 --repeats-sealed 3 --tag mytag` |
+| `scripts/parse_failure_audit.py` | Exact per-run impact of Brier-1.0 parse failures (gate/val/finalist; which accept/reject decisions would flip) | `uv run python scripts/parse_failure_audit.py` |
+| `scripts/retrospective_gate_analysis.py` | Replays gate decisions from a run's logs (gate↔val agreement, alternative thresholds) | `uv run python scripts/retrospective_gate_analysis.py --run-dir runs/pilot_baseline` |
+| `scripts/offline_prescreen.py` | Screens acceptance-rule variants and (model, bin) Pareto aggregation against logged proposals — screening only, not a simulation of an alternative run | `uv run python scripts/offline_prescreen.py` |
+| `scripts/feature_report_data.py` | Tags every evolved prompt for recurring features; accuracy + output-shift screens; matched-cell Brier/CRPS for all sealed-measured prompts | `uv run python scripts/feature_report_data.py` |
+
+Curated results, figures and the write-ups live in the sibling repo:
+`LLM_elicitation/intra_benchmark_calibration/experiments/III_gepa_optimization/`.
+Raw run outputs are archived on this fork's `results/*` branches.

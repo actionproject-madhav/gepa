@@ -1,0 +1,53 @@
+# Clean re-run of the baseline pilot on the FIXED measurement pipeline
+# (Madhav, 2026-08-29). Same search as configs/pilot_baseline.yaml — same
+# manifest, gate, budget, reflection prompt — with exactly the two
+# measurement fixes the parse-failure audit motivated (see
+# scripts/parse_failure_audit.py and the audit table in the LLM_elicitation
+# experiment record):
+#
+#   - temperature: 0.0        July ran the forecaster at 1.0; sampling gave
+#                             ~1-2% unparsable responses on long evolved
+#                             prompts, each scored Brier 1.0 (~9 ordinary
+#                             cells of penalty). Temp 0 also removes forecast
+#                             sampling noise from every gate/val comparison.
+#   - parse_retries: 1        an unparsable response is re-sampled once
+#                             before scoring (config default, stated
+#                             explicitly here because it is the point).
+#   - halt_on_cell_failure    any cell that STILL fails halts the run
+#                             (Jakub's BS=1 tripwire) instead of silently
+#                             folding -1.0 into the metric.
+#
+# July's run was handicapped by the failure penalty (12 failed cells; 3
+# rejections flipped by format typos). This run answers: what does the SAME
+# search find when format typos cannot kill children or distort scores?
+# NOTE a re-run is a fresh sample, not a repaired July — its winner may
+# differ, and it is judged on its own sealed passes, not against July's val.
+#
+# Pre-declared readout (after optimize): multi-pass sealed comparison of
+# this run's winner vs July cand 12 vs July cand 15 vs the seed, via
+#   uv run python scripts/val_noise_study.py --config configs/pilot_baseline_clean.yaml \
+#       --prompts seed,july_cand12,july_cand15,clean_winner --repeats-val 0 --repeats-sealed 3 --tag clean_rerun
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_baseline_clean.yaml --phase optimize
+
+run_dir: runs/pilot_baseline_clean
+manifest_path: runs/task_manifest_seed42.json
+
+temperature: 0.0
+parse_retries: 1
+halt_on_cell_failure: true
+
+# Finalist phase (run after optimize, same config):
+#   uv run python -m forecaster_gepa.run --config configs/pilot_baseline_clean.yaml --phase finalist
+finalist_include_seed: true
+
+max_iterations: 40
+max_metric_calls: 4000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42
