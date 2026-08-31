@@ -3,17 +3,21 @@
 #
 #   acceptance_criterion: aggregate_sum_and_min_task_wins, k = 8 of 20
 #
-# Why this setting and not a live sweep: the offline replay of all logged
-# accept/reject decisions (scripts/offline_prescreen.py; summary table in
-# LLM_elicitation experiments/III_gepa_optimization/summary/
-# offline_analyses_2026-08.md) already swept k = 2..10 for both rule
-# families against decisions whose outcomes we know:
-#   - min_task_wins ALONE is near-vacuous at every k (admits most rejects);
-#   - sum>0 AND wins>=8 keeps 11/12 known-good accepts, blocks 8/13 known-bad
-#     ones, admits nothing new — the only variant that passed screening.
-# The frontier-inclusion knob (n_cells_won_needed_for_pareto_frontier) was
-# also screened: k=2 changes almost nothing, k>=3 drops a sealed-verified
-# winner (July cand 15, 2 cell-wins) — so it stays at its default here.
+# Why this setting and not a live sweep: the offline replay of all 77
+# usable logged accept/reject decisions from the two 20-cell-gate runs
+# (scripts/sweep_report_data.py; figures fig12-16 in LLM_elicitation
+# experiments/III_gepa_optimization/summary/) swept k = 0..20 for both
+# rule families against decisions whose outcomes we know:
+#   - min_task_wins ALONE is near-vacuous: at every k that keeps the
+#     known-good accepts it re-admits about half the rejected proposals;
+#   - sum>0 AND wins>=8 keeps 15/18 known-good accepts, cuts 10/32
+#     known-bad ones, admits nothing new (clean run alone: 11/12 kept,
+#     5/13 cut) — the only variant that passed screening.
+# The frontier-inclusion knob (n_cells_won_needed_for_pareto_frontier)
+# was also screened and stays at its default: cells-won misranks verified
+# quality (held-out winners sit at 3 and 6 cells won, a verified-negative
+# prompt at 13), so any k >= 4 deletes a +0.014 winner first; k = 2
+# leaves both runs unchanged until iteration 34/28 of 40, then unknown.
 #
 # Pre-declared readout: multi-pass sealed comparison (>=3 paired passes,
 # scripts/val_noise_study.py) of this run's sealed-best candidates vs
