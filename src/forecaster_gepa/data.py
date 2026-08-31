@@ -64,6 +64,50 @@ class CellLoader:
         return len(self._order)
 
 
+@dataclass(frozen=True)
+class GroupSpec:
+    """One AGGREGATED GEPA val instance: all val cells of one (model, bin).
+
+    Used when cfg.pareto_instance == "model_bin" (Jeff's suggestion): the
+    Pareto frontier and the final valset ranking then operate on 20
+    low-variance instances (mean member score) instead of 84 single noisy
+    cells, removing the "confidently wrong wins the cell" pathology. Gate
+    batches and the finalist phase stay cell-level. Note the aggregate val
+    score becomes a mean of group means, which weights bins slightly
+    differently from the 84-cell mean (bins hold 5/5/5/3/3 val tasks).
+    """
+
+    group_key: str
+    model: str
+    bin: int
+    members: tuple[CellSpec, ...]
+
+
+class GroupLoader:
+    """Dict-backed GEPA DataLoader over (model, bin) group instances."""
+
+    def __init__(self, specs: Sequence[CellSpec]):
+        groups: dict[tuple[str, int], list[CellSpec]] = {}
+        for spec in specs:
+            groups.setdefault((spec.model, spec.bin), []).append(spec)
+        self._by_key = {
+            f"{model}::bin{b}": GroupSpec(
+                group_key=f"{model}::bin{b}", model=model, bin=b, members=tuple(members)
+            )
+            for (model, b), members in sorted(groups.items())
+        }
+        self._order = list(self._by_key)
+
+    def all_ids(self) -> list[str]:
+        return list(self._order)
+
+    def fetch(self, ids: Sequence[str]) -> list[GroupSpec]:
+        return [self._by_key[i] for i in ids]
+
+    def __len__(self) -> int:
+        return len(self._order)
+
+
 class ExperimentData:
     """Loads the manifest + Lyptus data and builds plans/loaders per phase."""
 
@@ -209,7 +253,11 @@ class ExperimentData:
         if dropped_val:
             logger.warning(f"Val tasks with missing cells (kept, with fewer cells): {dropped_val}")
 
-        return plans, CellLoader(train_specs), CellLoader(val_specs), sampler_tasks_by_bin
+        if self.cfg.pareto_instance == "model_bin":
+            val_loader = GroupLoader(val_specs)
+        else:
+            val_loader = CellLoader(val_specs)
+        return plans, CellLoader(train_specs), val_loader, sampler_tasks_by_bin
 
     def finalist_phase(self):
         """Plans + specs for finalist re-ranking (finalist tasks x full panel)."""

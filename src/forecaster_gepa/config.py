@@ -127,6 +127,17 @@ class ForecasterGEPAConfig:
     # frontier-inclusion knob -- distinct from the acceptance-gate knobs
     # below (which decide whether a proposed child even ENTERS the pool).
     n_cells_won_needed_for_pareto_frontier: int = 1
+    # Val instance granularity for the Pareto frontier AND the final valset
+    # ranking (Jeff's (model, bin) suggestion). "cell" = native, 84 single
+    # noisy cells. "model_bin" = 20 aggregated instances (all val cells of
+    # one forecasted model in one FST bin; instance score = mean member
+    # score), which removes the confidently-wrong-wins-the-cell pathology at
+    # the cost of frontier diversity (offline replay on the July run:
+    # wins-vs-quality correlation doubles, but two sealed-verified winners
+    # would hold zero aggregated instances — see
+    # summary/offline_analyses_2026-08.md in the LLM_elicitation repo).
+    # Gate batches and the finalist phase stay cell-level either way.
+    pareto_instance: str = "cell"
     # Budget: one metric call = one evaluated cell = one Sonnet generation.
     # Cost model: seed valset (84) + 40 gate cells/iteration + 84 val cells
     # per accepted child. ~18k calls ~= 250-300 candidates at ~30% acceptance.

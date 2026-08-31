@@ -28,7 +28,7 @@ from intra_benchmark_calibration.estimation_api import (
 from intra_benchmark_calibration.task_selector import CellPlan
 
 from forecaster_gepa.config import COMPONENT_NAME, ForecasterGEPAConfig
-from forecaster_gepa.data import CellSpec
+from forecaster_gepa.data import CellSpec, GroupSpec
 from forecaster_gepa.stub import stub_estimate_cells
 from gepa.core.adapter import EvaluationBatch, ProposalFn
 
@@ -92,6 +92,12 @@ class ForecasterAdapter:
         candidate: dict[str, str],
         capture_traces: bool = False,
     ) -> EvaluationBatch[dict, dict]:
+        # (model, bin) aggregated val instances (cfg.pareto_instance ==
+        # "model_bin"): evaluate every member cell in one concurrent batch,
+        # then reduce each group to its mean score. Gate batches always
+        # arrive as plain CellSpecs, so reflection traces are unaffected.
+        if batch and isinstance(batch[0], GroupSpec):
+            return self._evaluate_groups(batch, candidate, capture_traces)
         template = candidate[COMPONENT_NAME]
         plans = [self.plans[spec.cell_key] for spec in batch]
 
@@ -159,6 +165,37 @@ class ForecasterAdapter:
                     "completed iteration is intact — inspect these cells, then re-run the "
                     "same command to resume."
                 )
+        return EvaluationBatch(outputs=outputs, scores=scores, trajectories=trajectories)
+
+    def _evaluate_groups(
+        self, batch: list[GroupSpec], candidate: dict[str, str], capture_traces: bool = False
+    ) -> EvaluationBatch[dict, dict]:
+        members = [spec for group in batch for spec in group.members]
+        member_eb = self.evaluate(members, candidate, capture_traces=False)
+        outputs: list[dict] = []
+        scores: list[float] = []
+        pos = 0
+        for group in batch:
+            n = len(group.members)
+            g_scores = member_eb.scores[pos:pos + n]
+            g_outputs = member_eb.outputs[pos:pos + n]
+            pos += n
+            scores.append(sum(g_scores) / n)
+            outputs.append(
+                {
+                    "cell_key": group.group_key,
+                    "model": group.model,
+                    "bin": group.bin,
+                    "n_members": n,
+                    "member_briers": [o["brier"] for o in g_outputs],
+                    "brier": -scores[-1],
+                    "error": None,
+                }
+            )
+        # Reflection never reads valset trajectories (gate batches are
+        # cell-level), but the engine records best-program valset outputs
+        # with capture_traces=True — hand it the group outputs.
+        trajectories = [dict(o) for o in outputs] if capture_traces else None
         return EvaluationBatch(outputs=outputs, scores=scores, trajectories=trajectories)
 
     @staticmethod

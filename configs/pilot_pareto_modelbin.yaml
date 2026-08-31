@@ -1,0 +1,45 @@
+# Sweep arm B (Jakub's points-4/5 request, 2026-08-31): the PARETO instance.
+# One change vs configs/pilot_baseline_clean.yaml:
+#
+#   pareto_instance: model_bin
+#
+# Jeff's suggestion, newly implemented (data.py GroupSpec/GroupLoader +
+# adapter._evaluate_groups; dry-run + resume-check validated): the Pareto
+# frontier and the final valset ranking operate on 20 aggregated
+# (forecasted model x FST bin) instances — instance score = mean over its
+# member val cells — instead of 84 single noisy cells. This removes the
+# "confidently wrong wins the cell" pathology. Known risk from the offline
+# replay (offline_analyses_2026-08.md): aggregation doubles the
+# wins-vs-quality correlation but concentrates parent selection, and two of
+# July's sealed-verified winners would have held zero aggregated instances;
+# the frontier threshold therefore stays at its permissive default (1).
+# Gate batches and the finalist phase remain cell-level. NOTE the engine's
+# metric-call counter counts 20 per valset eval while the real API spend is
+# still 84 member calls, so max_metric_calls is not comparable to other
+# runs; max_iterations: 40 is the binding cap, real cost ~= the baseline's.
+#
+# Pre-declared readout: same as arm A — multi-pass sealed comparison of
+# this run's sealed-best candidates vs July cand 12 vs the seed.
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_pareto_modelbin.yaml --phase optimize
+
+run_dir: runs/pilot_pareto_modelbin
+manifest_path: runs/task_manifest_seed42.json
+
+pareto_instance: model_bin
+
+temperature: 0.0
+parse_retries: 1
+halt_on_cell_failure: true
+finalist_include_seed: true
+
+max_iterations: 40
+max_metric_calls: 4000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42

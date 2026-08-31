@@ -1,0 +1,44 @@
+# Sweep arm A (Jakub's points-4/5 request, 2026-08-31): the ACCEPTANCE gate.
+# One change vs configs/pilot_baseline_clean.yaml:
+#
+#   acceptance_criterion: aggregate_sum_and_min_task_wins, k = 8 of 20
+#
+# Why this setting and not a live sweep: the offline replay of all logged
+# accept/reject decisions (scripts/offline_prescreen.py; summary table in
+# LLM_elicitation experiments/III_gepa_optimization/summary/
+# offline_analyses_2026-08.md) already swept k = 2..10 for both rule
+# families against decisions whose outcomes we know:
+#   - min_task_wins ALONE is near-vacuous at every k (admits most rejects);
+#   - sum>0 AND wins>=8 keeps 11/12 known-good accepts, blocks 8/13 known-bad
+#     ones, admits nothing new — the only variant that passed screening.
+# The frontier-inclusion knob (n_cells_won_needed_for_pareto_frontier) was
+# also screened: k=2 changes almost nothing, k>=3 drops a sealed-verified
+# winner (July cand 15, 2 cell-wins) — so it stays at its default here.
+#
+# Pre-declared readout: multi-pass sealed comparison (>=3 paired passes,
+# scripts/val_noise_study.py) of this run's sealed-best candidates vs
+# July cand 12 (+0.027, the standing champion) vs the seed.
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_accept_joint.yaml --phase optimize
+
+run_dir: runs/pilot_accept_joint
+manifest_path: runs/task_manifest_seed42.json
+
+acceptance_criterion: aggregate_sum_and_min_task_wins
+acceptance_min_task_wins: 8
+
+temperature: 0.0
+parse_retries: 1
+halt_on_cell_failure: true
+finalist_include_seed: true
+
+max_iterations: 40
+max_metric_calls: 4000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42
