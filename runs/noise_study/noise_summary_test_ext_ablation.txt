@@ -1,0 +1,3 @@
+prompt          set     repeats                         mean    sd
+ablate_numeric_bands_only test    0.1692 0.1681                   0.1686  0.0007
+ablate_procedure_only test    0.1839 0.1822                   0.1831  0.0011
