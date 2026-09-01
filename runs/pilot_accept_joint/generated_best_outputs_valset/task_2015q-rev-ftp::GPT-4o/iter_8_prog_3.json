@@ -1,0 +1,13 @@
+{
+    "cell_key": "2015q-rev-ftp::GPT-4o",
+    "cell_id": "ALL_j3_M=GPT-4o_t=2015q-rev-ftp",
+    "task_id": "2015q-rev-ftp",
+    "model": "GPT-4o",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.07,
+    "p50": 0.13,
+    "p75": 0.2,
+    "brier": 0.016900000000000002,
+    "error": null
+}

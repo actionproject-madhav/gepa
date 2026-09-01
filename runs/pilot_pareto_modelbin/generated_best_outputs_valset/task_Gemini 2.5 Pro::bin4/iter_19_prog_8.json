@@ -1,0 +1,13 @@
+{
+    "cell_key": "Gemini 2.5 Pro::bin4",
+    "model": "Gemini 2.5 Pro",
+    "bin": 4,
+    "n_members": 3,
+    "member_briers": [
+        0.0064,
+        0.0625,
+        0.1024
+    ],
+    "brier": 0.057100000000000005,
+    "error": null
+}

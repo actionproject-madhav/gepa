@@ -1,0 +1,25 @@
+Dropped 22/291 headline tasks lacking `estimation_instructions` (first 5: ['arvo:10252', 'arvo:11523', 'arvo:1236', 'arvo:13345', 'arvo:25332']). Recorded on dataset.dropped_task_ids_no_estimation_instructions.
+compute_bins_right_closed: 1 value(s) at/below the bottom edge and 0 above the top edge; clipping into the outer bins.
+Test set bin distribution (targets): {1: 2, 2: 20, 3: 38, 4: 34} — bins 0-1 are (near-)empty by construction; joint domain + hard-difficulty transfer.
+1 inadmissible cells dropped: [('CVE-2024-35187', 'Opus 4')]
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+clean_cand7 test repeat 1/2: grand Brier 0.1861 (1033 cells, 0 failures)
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+clean_cand7 test repeat 2/2: grand Brier 0.1883 (1033 cells, 0 failures)
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+july_cand12 test repeat 1/2: grand Brier 0.1990 (1033 cells, 0 failures)
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+july_cand12 test repeat 2/2: grand Brier 0.2000 (1033 cells, 0 failures)
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+seed test repeat 1/2: grand Brier 0.1617 (1033 cells, 0 failures)
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+seed test repeat 2/2: grand Brier 0.1650 (1033 cells, 0 failures)
+
+prompt          set     repeats                         mean    sd
+clean_cand7     test    0.1861 0.1883                   0.1872  0.0015
+july_cand12     test    0.1990 0.2000                   0.1995  0.0007
+seed            test    0.1617 0.1650                   0.1633  0.0024

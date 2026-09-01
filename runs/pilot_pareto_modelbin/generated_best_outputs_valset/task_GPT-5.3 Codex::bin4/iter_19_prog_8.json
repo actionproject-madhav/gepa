@@ -1,0 +1,13 @@
+{
+    "cell_key": "GPT-5.3 Codex::bin4",
+    "model": "GPT-5.3 Codex",
+    "bin": 4,
+    "n_members": 3,
+    "member_briers": [
+        0.36,
+        0.4489000000000001,
+        0.5184
+    ],
+    "brier": 0.4424333333333334,
+    "error": null
+}

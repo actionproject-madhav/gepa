@@ -1,0 +1,13 @@
+{
+    "cell_key": "emaze::GPT-5.3 Codex",
+    "cell_id": "ALL_j4_M=GPT-5.3 Codex_t=emaze",
+    "task_id": "emaze",
+    "model": "GPT-5.3 Codex",
+    "bin": 4,
+    "outcome": 0.0,
+    "p25": 0.52,
+    "p50": 0.65,
+    "p75": 0.76,
+    "brier": 0.42250000000000004,
+    "error": null
+}

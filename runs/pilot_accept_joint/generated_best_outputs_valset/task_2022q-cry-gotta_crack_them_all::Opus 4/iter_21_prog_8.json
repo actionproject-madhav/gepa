@@ -1,0 +1,13 @@
+{
+    "cell_key": "2022q-cry-gotta_crack_them_all::Opus 4",
+    "cell_id": "ALL_j3_M=Opus 4_t=2022q-cry-gotta_crack_them_all",
+    "task_id": "2022q-cry-gotta_crack_them_all",
+    "model": "Opus 4",
+    "bin": 3,
+    "outcome": 1.0,
+    "p25": 0.38,
+    "p50": 0.58,
+    "p75": 0.72,
+    "brier": 0.17640000000000003,
+    "error": null
+}

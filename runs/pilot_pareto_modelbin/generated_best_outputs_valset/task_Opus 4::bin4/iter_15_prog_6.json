@@ -1,0 +1,13 @@
+{
+    "cell_key": "Opus 4::bin4",
+    "model": "Opus 4",
+    "bin": 4,
+    "n_members": 3,
+    "member_briers": [
+        0.09,
+        0.09,
+        0.09
+    ],
+    "brier": 0.09000000000000001,
+    "error": null
+}

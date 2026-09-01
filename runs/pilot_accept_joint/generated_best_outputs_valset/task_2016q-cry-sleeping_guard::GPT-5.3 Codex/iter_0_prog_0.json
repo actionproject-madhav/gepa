@@ -1,0 +1,13 @@
+{
+    "cell_key": "2016q-cry-sleeping_guard::GPT-5.3 Codex",
+    "cell_id": "ALL_j2_M=GPT-5.3 Codex_t=2016q-cry-sleeping_guard",
+    "task_id": "2016q-cry-sleeping_guard",
+    "model": "GPT-5.3 Codex",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.4,
+    "p50": 0.58,
+    "p75": 0.72,
+    "brier": 0.3364,
+    "error": null
+}

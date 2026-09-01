@@ -1,0 +1,13 @@
+{
+    "cell_key": "2016q-cry-sleeping_guard::GPT-4o",
+    "cell_id": "ALL_j2_M=GPT-4o_t=2016q-cry-sleeping_guard",
+    "task_id": "2016q-cry-sleeping_guard",
+    "model": "GPT-4o",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.04,
+    "p50": 0.09,
+    "p75": 0.16,
+    "brier": 0.0081,
+    "error": null
+}

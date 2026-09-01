@@ -1,0 +1,13 @@
+{
+    "cell_key": "2022q-cry-gotta_crack_them_all::Gemini 2.5 Pro",
+    "cell_id": "ALL_j3_M=Gemini 2.5 Pro_t=2022q-cry-gotta_crack_them_all",
+    "task_id": "2022q-cry-gotta_crack_them_all",
+    "model": "Gemini 2.5 Pro",
+    "bin": 3,
+    "outcome": 0.0,
+    "p25": 0.07,
+    "p50": 0.13,
+    "p75": 0.2,
+    "brier": 0.016900000000000002,
+    "error": null
+}

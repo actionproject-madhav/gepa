@@ -1,0 +1,13 @@
+{
+    "cell_key": "GPT-4o::bin3",
+    "model": "GPT-4o",
+    "bin": 3,
+    "n_members": 3,
+    "member_briers": [
+        0.0144,
+        0.004900000000000001,
+        0.0144
+    ],
+    "brier": 0.011233333333333333,
+    "error": null
+}

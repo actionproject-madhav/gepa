@@ -1,0 +1,589 @@
+[92m10:42:51 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:43:10 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 359340 bytes
+[92m10:43:44 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:44:04 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 348958 bytes
+[92m10:45:12 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:45:35 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 341510 bytes
+[92m10:46:13 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:46:40 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 337876 bytes
+[92m10:47:15 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:47:41 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 347870 bytes
+[92m10:51:13 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:51:39 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 331614 bytes
+[92m10:52:45 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:53:11 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 462242 bytes
+[92m10:54:15 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:54:42 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 346712 bytes
+[92m10:55:43 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:56:04 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 520268 bytes
+wandb: WARNING Serializing object of type str that is 345716 bytes
+[92m10:56:44 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:57:12 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 520268 bytes
+wandb: WARNING Serializing object of type str that is 518762 bytes
+wandb: WARNING Serializing object of type str that is 472796 bytes
+[92m10:58:16 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:58:40 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 520268 bytes
+wandb: WARNING Serializing object of type str that is 518762 bytes
+wandb: WARNING Serializing object of type str that is 709858 bytes
+wandb: WARNING Serializing object of type str that is 351412 bytes
+[92m10:59:14 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m10:59:37 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 520268 bytes
+wandb: WARNING Serializing object of type str that is 518762 bytes
+wandb: WARNING Serializing object of type str that is 709858 bytes
+wandb: WARNING Serializing object of type str that is 527318 bytes
+wandb: WARNING Serializing object of type str that is 335734 bytes
+[92m11:00:31 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:01:08 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 520268 bytes
+wandb: WARNING Serializing object of type str that is 518762 bytes
+wandb: WARNING Serializing object of type str that is 709858 bytes
+wandb: WARNING Serializing object of type str that is 527318 bytes
+wandb: WARNING Serializing object of type str that is 503781 bytes
+wandb: WARNING Serializing object of type str that is 466972 bytes
+[92m11:02:22 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:02:45 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 539198 bytes
+wandb: WARNING Serializing object of type str that is 523625 bytes
+wandb: WARNING Serializing object of type str that is 512468 bytes
+wandb: WARNING Serializing object of type str that is 507012 bytes
+wandb: WARNING Serializing object of type str that is 522005 bytes
+wandb: WARNING Serializing object of type str that is 497585 bytes
+wandb: WARNING Serializing object of type str that is 694003 bytes
+wandb: WARNING Serializing object of type str that is 520268 bytes
+wandb: WARNING Serializing object of type str that is 518762 bytes
+wandb: WARNING Serializing object of type str that is 709858 bytes
+wandb: WARNING Serializing object of type str that is 527318 bytes
+wandb: WARNING Serializing object of type str that is 503781 bytes
+wandb: WARNING Serializing object of type str that is 701108 bytes
+wandb: WARNING Serializing object of type str that is 340430 bytes
+[92m11:04:00 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:04:29 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Tried to log to step 14 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 0 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+[92m11:47:55 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:48:19 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Serializing object of type str that is 468378 bytes
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+wandb: WARNING Tried to log to step 15 that is less than the current step 16. Steps must be monotonically increasing, so this data will be ignored. See https://wandb.me/define-metric to log data out of order.
+[92m11:49:22 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:49:55 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 514204 bytes
+[92m11:50:35 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:50:59 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 348588 bytes
+[92m11:51:45 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:52:20 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 494872 bytes
+[92m11:53:33 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:53:57 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 339284 bytes
+[92m11:55:01 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:55:32 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 466160 bytes
+[92m11:56:45 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:57:13 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 338254 bytes
+[92m11:58:15 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m11:58:45 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 551854 bytes
+[92m11:59:41 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:00:15 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 548262 bytes
+[92m12:01:03 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:01:41 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 456036 bytes
+[92m12:02:59 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:03:37 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 528874 bytes
+[92m12:05:30 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:06:08 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 542886 bytes
+[92m12:07:36 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:07:58 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 332526 bytes
+[92m12:08:36 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:08:56 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 352056 bytes
+[92m12:09:31 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:10:00 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 459088 bytes
+[92m12:11:13 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:11:45 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 511114 bytes
+[92m12:12:45 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:13:16 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1045552 bytes
+[92m12:14:21 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:14:53 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 517426 bytes
+[92m12:15:59 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:16:31 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 526742 bytes
+[92m12:17:38 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:18:11 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 545126 bytes
+[92m12:19:41 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:20:20 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 818813 bytes
+wandb: WARNING Serializing object of type str that is 571322 bytes
+[92m12:21:44 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:22:23 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 818813 bytes
+wandb: WARNING Serializing object of type str that is 858123 bytes
+wandb: WARNING Serializing object of type str that is 555582 bytes
+[92m12:23:31 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:24:05 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 818813 bytes
+wandb: WARNING Serializing object of type str that is 858123 bytes
+wandb: WARNING Serializing object of type str that is 834626 bytes
+wandb: WARNING Serializing object of type str that is 1088088 bytes
+[92m12:25:25 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:26:01 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 818813 bytes
+wandb: WARNING Serializing object of type str that is 858123 bytes
+wandb: WARNING Serializing object of type str that is 834626 bytes
+wandb: WARNING Serializing object of type str that is 1361349 bytes
+wandb: WARNING Serializing object of type str that is 529344 bytes
+[92m12:26:43 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:27:25 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 818813 bytes
+wandb: WARNING Serializing object of type str that is 858123 bytes
+wandb: WARNING Serializing object of type str that is 834626 bytes
+wandb: WARNING Serializing object of type str that is 1361349 bytes
+wandb: WARNING Serializing object of type str that is 794918 bytes
+wandb: WARNING Serializing object of type str that is 551712 bytes
+[92m12:28:38 - LiteLLM:INFO[0m: utils.py:3799 - 
+LiteLLM completion() model= claude-opus-4-8; provider = anthropic
+[92m12:29:10 - LiteLLM:INFO[0m: utils.py:1475 - Wrapper: Completed Call, calling success_handler
+wandb: WARNING Serializing object of type str that is 702984 bytes
+wandb: WARNING Serializing object of type str that is 771959 bytes
+wandb: WARNING Serializing object of type str that is 523062 bytes
+wandb: WARNING Serializing object of type str that is 742675 bytes
+wandb: WARNING Serializing object of type str that is 509118 bytes
+wandb: WARNING Serializing object of type str that is 699598 bytes
+wandb: WARNING Serializing object of type str that is 507567 bytes
+wandb: WARNING Serializing object of type str that is 829057 bytes
+wandb: WARNING Serializing object of type str that is 823633 bytes
+wandb: WARNING Serializing object of type str that is 684446 bytes
+wandb: WARNING Serializing object of type str that is 794317 bytes
+wandb: WARNING Serializing object of type str that is 815579 bytes
+wandb: WARNING Serializing object of type str that is 498969 bytes
+wandb: WARNING Serializing object of type str that is 528280 bytes
+wandb: WARNING Serializing object of type str that is 688991 bytes
+wandb: WARNING Serializing object of type str that is 767253 bytes
+wandb: WARNING Serializing object of type str that is 1307866 bytes
+wandb: WARNING Serializing object of type str that is 777090 bytes
+wandb: WARNING Serializing object of type str that is 790717 bytes
+wandb: WARNING Serializing object of type str that is 818813 bytes
+wandb: WARNING Serializing object of type str that is 858123 bytes
+wandb: WARNING Serializing object of type str that is 834626 bytes
+wandb: WARNING Serializing object of type str that is 1361349 bytes
+wandb: WARNING Serializing object of type str that is 794918 bytes
+wandb: WARNING Serializing object of type str that is 828818 bytes
+wandb: WARNING Serializing object of type str that is 526794 bytes

@@ -1,0 +1,13 @@
+{
+    "cell_key": "nl2bash_simple/task_9729::Gemini 2.5 Pro",
+    "cell_id": "ALL_j1_M=Gemini 2.5 Pro_t=nl2bash_simple/task_9729",
+    "task_id": "nl2bash_simple/task_9729",
+    "model": "Gemini 2.5 Pro",
+    "bin": 1,
+    "outcome": 1.0,
+    "p25": 0.9,
+    "p50": 0.95,
+    "p75": 0.98,
+    "brier": 0.0025000000000000044,
+    "error": null
+}

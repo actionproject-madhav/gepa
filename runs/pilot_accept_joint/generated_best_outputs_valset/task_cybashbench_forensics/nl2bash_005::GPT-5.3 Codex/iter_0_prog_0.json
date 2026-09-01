@@ -1,0 +1,13 @@
+{
+    "cell_key": "cybashbench_forensics/nl2bash_005::GPT-5.3 Codex",
+    "cell_id": "ALL_j0_M=GPT-5.3 Codex_t=cybashbench_forensics/nl2bash_005",
+    "task_id": "cybashbench_forensics/nl2bash_005",
+    "model": "GPT-5.3 Codex",
+    "bin": 0,
+    "outcome": 1.0,
+    "p25": 0.97,
+    "p50": 0.99,
+    "p75": 0.99,
+    "brier": 0.00010000000000000018,
+    "error": null
+}

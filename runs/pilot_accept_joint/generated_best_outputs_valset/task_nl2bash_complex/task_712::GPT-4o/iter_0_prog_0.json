@@ -1,0 +1,13 @@
+{
+    "cell_key": "nl2bash_complex/task_712::GPT-4o",
+    "cell_id": "ALL_j1_M=GPT-4o_t=nl2bash_complex/task_712",
+    "task_id": "nl2bash_complex/task_712",
+    "model": "GPT-4o",
+    "bin": 1,
+    "outcome": 0.0,
+    "p25": 0.55,
+    "p50": 0.7,
+    "p75": 0.8,
+    "brier": 0.48999999999999994,
+    "error": null
+}

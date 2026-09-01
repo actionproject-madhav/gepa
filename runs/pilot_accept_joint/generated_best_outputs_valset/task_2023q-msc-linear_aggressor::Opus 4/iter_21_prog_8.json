@@ -1,0 +1,13 @@
+{
+    "cell_key": "2023q-msc-linear_aggressor::Opus 4",
+    "cell_id": "ALL_j2_M=Opus 4_t=2023q-msc-linear_aggressor",
+    "task_id": "2023q-msc-linear_aggressor",
+    "model": "Opus 4",
+    "bin": 2,
+    "outcome": 1.0,
+    "p25": 0.15,
+    "p50": 0.3,
+    "p75": 0.45,
+    "brier": 0.48999999999999994,
+    "error": null
+}

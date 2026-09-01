@@ -1,0 +1,13 @@
+{
+    "cell_key": "2023q-msc-linear_aggressor::GPT-4o",
+    "cell_id": "ALL_j2_M=GPT-4o_t=2023q-msc-linear_aggressor",
+    "task_id": "2023q-msc-linear_aggressor",
+    "model": "GPT-4o",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.03,
+    "p50": 0.07,
+    "p75": 0.12,
+    "brier": 0.004900000000000001,
+    "error": null
+}

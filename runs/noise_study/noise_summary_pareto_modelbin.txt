@@ -1,0 +1,5 @@
+prompt          set     repeats                         mean    sd
+july_cand12     sealed  0.1035 0.1052 0.1091            0.1059  0.0029
+modelbin_cand10 sealed  0.1225 0.1163 0.1212            0.1200  0.0033
+modelbin_cand18 sealed  0.1095 0.1089 0.1108            0.1097  0.0010
+seed            sealed  0.1311 0.1323 0.1310            0.1315  0.0007

@@ -1,0 +1,13 @@
+{
+    "cell_key": "sop::Gemini 2.5 Pro",
+    "cell_id": "ALL_j2_M=Gemini 2.5 Pro_t=sop",
+    "task_id": "sop",
+    "model": "Gemini 2.5 Pro",
+    "bin": 2,
+    "outcome": 0.0,
+    "p25": 0.05,
+    "p50": 0.12,
+    "p75": 0.2,
+    "brier": 0.0144,
+    "error": null
+}
