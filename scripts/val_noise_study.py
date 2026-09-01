@@ -9,6 +9,9 @@ that noise directly instead of inferring it from three accidental draws:
   For each prompt in --prompts-dir, evaluate the FULL val set (84 cells)
   --repeats-val times and the FULL finalist set (~230 cells)
   --repeats-sealed times, with fresh forecaster calls each repeat.
+  --repeats-test does the same on the frozen CVEBench+CyberGym held-out
+  test set (~1,033 cells: 94 tasks x the full model panel; default 0 —
+  the test set is spent deliberately, never by default).
 
 Pre-declared readouts:
   1. Between-repeat SD of the grand Brier, per prompt per set — the
@@ -54,6 +57,8 @@ def main() -> int:
     ap.add_argument("--prompts-dir", default=str(REPO / "configs/noise_study_prompts"))
     ap.add_argument("--repeats-val", type=int, default=5)
     ap.add_argument("--repeats-sealed", type=int, default=3)
+    ap.add_argument("--repeats-test", type=int, default=0,
+                    help="repeats on the frozen CVEBench+CyberGym test set (~1,033 cells)")
     ap.add_argument("--out", default=str(REPO / "runs/noise_study"))
     ap.add_argument("--limit-cells", type=int, default=None, help="smoke-testing only")
     ap.add_argument("--temperature", type=float, default=None, help="override forecaster temperature")
@@ -91,6 +96,12 @@ def main() -> int:
         if args.limit_cells:
             fspecs = fspecs[: args.limit_cells]
         batches.append(("sealed", fspecs, ForecasterAdapter(fplans, cfg), args.repeats_sealed))
+    if args.repeats_test > 0:
+        tplans, tspecs = data.test_phase()
+        tspecs = list(tspecs)
+        if args.limit_cells:
+            tspecs = tspecs[: args.limit_cells]
+        batches.append(("test", tspecs, ForecasterAdapter(tplans, cfg), args.repeats_test))
 
     summary: dict[str, dict[str, list[float]]] = {}
     for prompt_path in prompts:
