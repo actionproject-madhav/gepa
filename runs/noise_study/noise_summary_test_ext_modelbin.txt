@@ -1,0 +1,2 @@
+prompt          set     repeats                         mean    sd
+modelbin_cand18 test    0.1724 0.1713                   0.1718  0.0007

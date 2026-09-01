@@ -1,0 +1,3 @@
+prompt          set     repeats                         mean    sd
+seed            sealed  0.1292 0.1285 0.1264            0.1280  0.0015
+v2_cand13       sealed  0.1265 0.1279 0.1308            0.1284  0.0022
