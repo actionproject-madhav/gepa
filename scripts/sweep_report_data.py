@@ -208,21 +208,46 @@ def pareto_sweep() -> dict:
 
 
 # ---------------------------------------------------------------- gate size
-GATE_SIZE = {
-    # verified multi-pass paired sealed gains vs seed (runs index):
-    "runs": [
-        {"label": "search run 1", "gate_cells": 20, "best_gain": 0.0266,
-         "passes": "8 paired passes", "run_dir": "pilot_baseline"},
-        {"label": "search run 2", "gate_cells": 20, "best_gain": 0.0161,
-         "passes": "3 paired passes", "run_dir": "pilot_baseline_clean"},
-        {"label": "100-cell run", "gate_cells": 100, "best_gain": None,
-         "passes": "no prompt beat the seed on the search set",
-         "run_dir": "pilot_gate100"},
-    ],
-    # runs/pilot_gate100/retro_gate_analysis.txt: subsampled-gate disagreement
-    # with the 100-cell verdict (P(accept) resampling, 200 draws/proposal)
-    "subsample_flip_rate": {"20": 0.30, "40": 0.22, "60": 0.15},
-}
+def gate_size() -> dict:
+    """Per-repeat paired sealed gains (seed pass mean - prompt pass mean,
+    same file+repeat) for each run's best prompt, from the noise-study
+    cell logs. Whisker data for the gate-size figure."""
+    files = ["noise_cells_temp0.jsonl", "noise_cells_temp0_confirm.jsonl",
+             "noise_cells_clean_rerun.jsonl", "noise_cells_feature_ablation.jsonl"]
+    per: dict[tuple, dict[str, list[float]]] = defaultdict(lambda: defaultdict(list))
+    for i, f in enumerate(files):
+        p = REPO / "runs/noise_study" / f
+        if not p.exists():
+            continue
+        for line in p.open():
+            r = json.loads(line)
+            if r["set"] != "sealed":
+                continue
+            per[(i, r["repeat"])][r["prompt"]].append(
+                r["brier"] if r["brier"] is not None else 1.0)
+
+    def paired(prompt: str) -> dict:
+        gains = [statistics.mean(d["seed"]) - statistics.mean(d[prompt])
+                 for d in per.values() if "seed" in d and prompt in d]
+        return {"mean": statistics.mean(gains), "min": min(gains),
+                "max": max(gains), "n_repeats": len(gains)}
+
+    seed_level = statistics.mean(
+        statistics.mean(d["seed"]) for d in per.values() if "seed" in d)
+    return {
+        "seed_heldout_brier": seed_level,
+        "runs": [
+            {"label": "run 1", "gate_cells": 20, "run_dir": "pilot_baseline",
+             "best": paired("july_cand12")},
+            {"label": "run 2", "gate_cells": 20, "run_dir": "pilot_baseline_clean",
+             "best": paired("clean_cand7")},
+            {"label": "run 3", "gate_cells": 100, "run_dir": "pilot_gate100",
+             "best": None},  # no candidate beat the seed on the search set
+        ],
+        # runs/pilot_gate100/retro_gate_analysis.txt: subsampled-gate
+        # disagreement with the 100-cell verdict (200 draws/proposal)
+        "subsample_flip_rate": {"20": 0.30, "40": 0.22, "60": 0.15},
+    }
 
 
 def main() -> int:
@@ -233,7 +258,7 @@ def main() -> int:
         "acceptance": acceptance_sweep(),
         "frontier": frontier_sweep(),
         "pareto_instance": pareto_sweep(),
-        "gate_size": GATE_SIZE,
+        "gate_size": gate_size(),
     }
     (REPO / "runs/sweep_report_data.json").write_text(json.dumps(payload, indent=1))
 
