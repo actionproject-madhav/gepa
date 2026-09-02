@@ -1,0 +1,11 @@
+Dropped 22/291 headline tasks lacking `estimation_instructions` (first 5: ['arvo:10252', 'arvo:11523', 'arvo:1236', 'arvo:13345', 'arvo:25332']). Recorded on dataset.dropped_task_ids_no_estimation_instructions.
+compute_bins_right_closed: 1 value(s) at/below the bottom edge and 0 above the top edge; clipping into the outer bins.
+Test set bin distribution (targets): {1: 2, 2: 20, 3: 38, 4: 34} — bins 0-1 are (near-)empty by construction; joint domain + hard-difficulty transfer.
+1 inadmissible cells dropped: [('CVE-2024-35187', 'Opus 4')]
+Found <rationale> with no closing tag — the response was likely truncated by max_tokens / max_completion_tokens. Capturing the partial content.
+holdout tasks: 27 {'cybergym': 20, 'cvebench': 7}
+outcome cells available: 297 of 297 possible
+templates: 44 (model x bin) combos from the frozen test phase
+cells: 297; proxy-bin clips: none
+seed repeat 1/2: grand Brier 0.1910 (297 cells, 0 failures)
+seed repeat 2/2: grand Brier 0.1886 (297 cells, 0 failures)
