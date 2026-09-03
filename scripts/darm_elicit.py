@@ -69,18 +69,18 @@ FAM_DIRS = {"cvebench": "cvebench", "cybergym": "cybergym"}
 
 
 def parse_reply(text: str):
-    m = re.search(r"\{[^{}]*\}", text, re.DOTALL)
-    if not m:
-        return None
-    try:
-        d = json.loads(m.group(0))
-        lo, mid, hi = (float(d["low_minutes"]), float(d["mid_minutes"]),
-                       float(d["high_minutes"]))
-    except (KeyError, TypeError, ValueError, json.JSONDecodeError):
-        return None
-    if not (0 < lo <= mid <= hi):
-        return None
-    return lo, mid, hi
+    # The model sometimes reasons in prose before the JSON; take the LAST
+    # parseable object. Also tolerate thousands separators inside numbers.
+    for m in reversed(re.findall(r"\{[^{}]*\}", text, re.DOTALL)):
+        try:
+            d = json.loads(re.sub(r"(\d),(\d)", r"\1\2", m))
+            lo, mid, hi = (float(d["low_minutes"]), float(d["mid_minutes"]),
+                           float(d["high_minutes"]))
+        except (KeyError, TypeError, ValueError, json.JSONDecodeError):
+            continue
+        if 0 < lo <= mid <= hi:
+            return lo, mid, hi
+    return None
 
 
 def collect_tasks(cfg) -> list[dict]:
@@ -135,7 +135,7 @@ async def run(tasks, repeats, out_path):
         for attempt in range(2):  # one parse retry
             try:
                 reply = await make_api_call(client, sem, settings,
-                                            SYSTEM_PROMPT, prompt, max_tokens=300)
+                                            SYSTEM_PROMPT, prompt, max_tokens=2000)
             except Exception as e:  # client retries exhausted
                 row["error"] = f"api:{type(e).__name__}"
                 break
@@ -164,12 +164,19 @@ def main() -> int:
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--limit-tasks", type=int, default=None)
     ap.add_argument("--tag", default="darm_times")
+    ap.add_argument("--retry-failures-of", default=None,
+                    help="path to an existing darm jsonl; re-run only its error rows")
     args = ap.parse_args()
 
     cfg = load_config(args.config)
     tasks = collect_tasks(cfg)
     counts = pd.Series([t["set"] for t in tasks]).value_counts().to_dict()
     print(f"tasks: {len(tasks)} {counts}")
+    if args.retry_failures_of:
+        failed = {json.loads(l)["task_id"] for l in open(args.retry_failures_of)
+                  if l.strip() and json.loads(l)["error"]}
+        tasks = [t for t in tasks if t["task_id"] in failed]
+        print(f"retrying {len(tasks)} tasks with prior failures")
     if args.limit_tasks:
         tasks = tasks[: args.limit_tasks]
     out = REPO / "runs/noise_study" / f"noise_cells_{args.tag}.jsonl"
