@@ -1,0 +1,21 @@
+Dropped 22/291 headline tasks lacking `estimation_instructions` (first 5: ['arvo:10252', 'arvo:11523', 'arvo:1236', 'arvo:13345', 'arvo:25332']). Recorded on dataset.dropped_task_ids_no_estimation_instructions.
+compute_bins_right_closed: 1 value(s) at/below the bottom edge and 0 above the top edge; clipping into the outer bins.
+tasks: 296 {'train': 175, 'test': 94, 'holdout27': 27}
+  50 calls done
+  100 calls done
+  150 calls done
+  200 calls done
+  250 calls done
+  300 calls done
+  350 calls done
+  400 calls done
+  450 calls done
+  500 calls done
+  550 calls done
+  600 calls done
+  650 calls done
+  700 calls done
+  750 calls done
+  800 calls done
+  850 calls done
+wrote 888 rows (77 errors) -> /Users/madhav/SaferAI/gepa/runs/noise_study/noise_cells_darm_times.jsonl
