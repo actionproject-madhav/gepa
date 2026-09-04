@@ -128,3 +128,23 @@ runs-index row at launch.
 
 2026-09-03. Files committed with this prereg: configs/pilot_sabotage_seed.yaml,
 configs/sabotage_seed.txt, configs/noise_study_prompts/sabotage_seed.txt.
+
+## Amendment 1 (2026-09-03, pre-launch; gate fired, redesign per the abort rule)
+
+Pre-gate v1 result: sabotage v1 (evidence-declared-misleading +
+assume-likely-solves + no-deliberation) scored val 0.1116 / sealed 0.1342 —
+only +0.007 val / +0.004 sealed worse than the seed. BOTH bars missed: the
+forecaster largely ignored the anti-evidence instructions with the table
+present (replicating the always-99 non-compliance precedent at
+instruction level; consistent with the audit's sufficiency finding that the
+model interpolates the printed table regardless of instructions). Recorded
+as a finding; NO optimize launch occurred.
+
+Redesign v2 (this file's committed sabotage_seed.txt as of amendment):
+degradations chosen for COMPLIANCE (format-type rules bind where factual
+contradictions do not): (1) coarseness rule — p50 restricted to
+{0.05, 0.50, 0.95}, nearest value; (2) tie-break-higher bias; (3)
+no-deliberation rule; p25=p75=p50 (interval information destroyed). All
+single-instruction-repairable; scaffold and placeholders unchanged. Same
+gate bars re-run under tag sabotage_pregate2 (~$4). Same abort rule. v1
+text preserved in git history (commit 973616f).
