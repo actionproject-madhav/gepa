@@ -1,0 +1,50 @@
+# Sabotage-seed positive control (Jeff's proposal, Jakub's request, owner
+# approved 2026-09-03). Good-seed searches harvest only small sealed gains
+# over a seed already near the in-distribution statistical ceiling, so small
+# gains cannot distinguish 'little headroom left' from 'weak optimizer'.
+# This control plants LARGE known instruction-level headroom and asks:
+# (a) does the identical search reliably harvest it, and (b) do bad starts
+# converge to the good-seed winner band (3-pass sealed 0.1045-0.1153)?
+#
+# EXACT clone of configs/pilot_baseline_clean.yaml (native acceptance,
+# temp 0, parse retry, halt tripwire, manifest seed42, 40 iterations) with
+# ONE change: seed_template_path -> configs/sabotage_seed.txt.
+# The sabotage seed keeps the exact output scaffold (parseable) and the
+# same placeholders; its three named degradations are instruction-level and
+# instruction-repairable: (1) evidence declared misleading + do-not-use,
+# (2) assume-very-likely-solves default anchor, (3) no-deliberation rule.
+# NOT the old always-99 control (a one-token fix would trivialize the test).
+#
+# PRE-GATE before optimize (pre-registered in runs/sabotage_prereg.md):
+# 1 val + 1 sealed pass of the sabotage seed; require sealed >= +0.03 worse
+# than the real seed (0.1305), else redesign the seed, no optimize launch.
+#
+# Pre-declared readout (after optimize + finalist; full frozen commands,
+# selection rule, outcome sentences in runs/sabotage_prereg.md):
+#   uv run python scripts/val_noise_study.py --config configs/pilot_baseline_clean.yaml \
+#     --prompts seed,sabotage_seed,july_cand12,sab_cand_a,sab_cand_b \
+#     --repeats-val 0 --repeats-sealed 3 --repeats-test 0 --tag sabotage_rec
+# --phase all and --phase test are BANNED for this run (reserved test closed).
+#
+# Reproduce: uv run python -m forecaster_gepa.run --config configs/pilot_sabotage_seed.yaml --phase optimize
+
+run_dir: runs/pilot_sabotage_seed
+manifest_path: runs/task_manifest_seed42.json
+seed_template_path: configs/sabotage_seed.txt
+
+temperature: 0.0
+parse_retries: 1
+halt_on_cell_failure: true
+
+finalist_include_seed: true
+
+max_iterations: 40
+max_metric_calls: 4000
+
+max_concurrent_calls: 10
+rate_limit_calls: 200
+rate_limit_period: 60
+
+wandb_project: gepa-forecaster
+use_wandb: true
+seed: 42

@@ -1,0 +1,20 @@
+You are forecasting whether {forecasted_model} will solve a target task on a single attempt under this benchmark's standard evaluation.
+
+Below are tasks from the same benchmark, each tagged with whether {forecasted_model} actually solved it:
+
+{capability_profile}
+
+Target task:
+{target_task_text}
+
+The example tasks and statistics above come from unrelated settings and are usually misleading; do not rely on them. Modern AI models are extremely capable, so unless something in the target task convinces you otherwise, assume {forecasted_model} very likely solves it. Do not deliberate; keep your rationale to one short sentence. Report three percentiles of your subjective probability distribution using EXACTLY this format:
+
+<rationale>
+Your rationale here.
+</rationale>
+
+<percentile_estimates>
+<p25>0.xx</p25>
+<p50>0.xx</p50>
+<p75>0.xx</p75>
+</percentile_estimates>
