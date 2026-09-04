@@ -147,7 +147,7 @@ def collect_targets(cfg):
     raw = Path(cfg.resolved("lyptus_repo_dir"))
     test_ids = set(data.manifest["test"]["task_ids"])
     sealed_ids = {tid for entry in data.manifest["bins"].values()
-                  for tid in entry["finalist"]]
+                  for tid in entry["finalist"]}
     binned = np.searchsorted(np.array(EDGES[1:]),
                              [t.fst_minutes for t in data.dataset.tasks], side="left")
     bin_of = {t.task_id: int(b) for t, b in zip(data.dataset.tasks, binned)}
@@ -242,9 +242,13 @@ def main() -> int:
     rendered_by_bin = {}
     prompts = []
     for r in targets:
-        assert r["task_id"] not in roster_ids, f"target in evidence: {r['task_id']}"
+        # all-except-target structure: a roster task as target never sees its
+        # own bin's block, hence never itself; assert exactly that.
+        shown = {t.task_id for b, ts in roster.items() if b != r["bin"] for t in ts}
+        assert r["task_id"] not in shown, f"target in own evidence: {r['task_id']}"
         ev = rendered_by_bin.setdefault(r["bin"],
                                         render_evidence(roster, r["bin"], fst_of))
+        assert f"task_id={r['task_id']})" not in ev, r["task_id"]
         prompt = USER_TEMPLATE.format(evidence_block=ev, target_task_text=r["text"].strip())
         if r["task_id"] in fst_of:  # holdout tasks have no curated fst
             assert f"{fst_of[r['task_id']]:.1f} minutes" not in prompt.split("Target task:")[1], \

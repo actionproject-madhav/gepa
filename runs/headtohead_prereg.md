@@ -43,9 +43,10 @@ not identical text.
   claude-sonnet-4-6, temperature 0, empty system prompt (persona folded into
   the user turn); parse failure -> one retry -> task dropped from pairing
   and counted (never scored 1.0). ~888 calls, ~$11.
-  Disclosures: the 16 roster tasks' time-label sources are mixed (6
-  completion-timed, 7 expert-estimated, 3 first-blood) - named, part of the
-  treatment; the all-except-target structure leaves the target's bin
+  Disclosures: the modal roster resolves to 15 unique tasks (the audit's
+  count of 16 included a GLM-5 bin-4 variant that the mode collapses); their
+  time-label sources are mixed (completion-timed, expert-estimated, and
+  first-blood), printed verbatim - named, part of the treatment; the all-except-target structure leaves the target's bin
   inferable from the missing header (same as seed; MORE target information
   than the bare D-arm: information ordering D < T ~= seed), so the T-vs-D
   contrast is "does the anchored evidence pack, including the inferable
