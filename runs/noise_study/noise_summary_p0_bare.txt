@@ -1,0 +1,2 @@
+prompt          set     repeats                         mean    sd
+p0_bare         test    0.1756 0.1752                   0.1754  0.0003

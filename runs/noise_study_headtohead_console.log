@@ -1,0 +1,57 @@
+Dropped 22/291 headline tasks lacking `estimation_instructions` (first 5: ['arvo:10252', 'arvo:11523', 'arvo:1236', 'arvo:13345', 'arvo:25332']). Recorded on dataset.dropped_task_ids_no_estimation_instructions.
+compute_bins_right_closed: 1 value(s) at/below the bottom edge and 0 above the top edge; clipping into the outer bins.
+Test set bin distribution (targets): {1: 2, 2: 20, 3: 38, 4: 34} — bins 0-1 are (near-)empty by construction; joint domain + hard-difficulty transfer.
+1 inadmissible cells dropped: [('CVE-2024-35187', 'Opus 4')]
+targets: 296 Counter({'train_fit': 154, 'test': 94, 'holdout27': 27, 'sealed': 21}); evidence blocks: 5 bins; roster tasks: ['2015q-web-k_stairs', '2016q-for-kill', '2016q-pwn-hungman', '2020f-rev-rap', '2020q-pwn-roppity', '2022q-cry-beyond_quantum', '2023q-msc-linear_aggressor', 'avatar', 'cybashbench_misc/contextual_024', 'cybashbench_web/contextual_088', 'cybashbench_web/mcq_194', 'cybashbench_web/multistep_124', 'emaze', 'intercode-ctf_general_skills/task_27', 'unbreakable']
+  50 calls done
+  100 calls done
+  150 calls done
+  200 calls done
+  250 calls done
+  300 calls done
+  350 calls done
+  400 calls done
+  450 calls done
+  500 calls done
+  550 calls done
+  600 calls done
+  650 calls done
+  700 calls done
+  750 calls done
+  800 calls done
+  850 calls done
+wrote 888 rows (0 errors) -> /Users/madhav/SaferAI/gepa/runs/noise_study/noise_cells_armT_times.jsonl
+Dropped 22/291 headline tasks lacking `estimation_instructions` (first 5: ['arvo:10252', 'arvo:11523', 'arvo:1236', 'arvo:13345', 'arvo:25332']). Recorded on dataset.dropped_task_ids_no_estimation_instructions.
+compute_bins_right_closed: 1 value(s) at/below the bottom edge and 0 above the top edge; clipping into the outer bins.
+Test set bin distribution (targets): {1: 2, 2: 20, 3: 38, 4: 34} — bins 0-1 are (near-)empty by construction; joint domain + hard-difficulty transfer.
+1 inadmissible cells dropped: [('CVE-2024-35187', 'Opus 4')]
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+1/1033 cells FAILED in this batch and scored -1.0 (0 rate-limited). First few: arvo:59602::GPT-4o: parse_failed: no p50 extracted from response (after 2 attempt(s)). 
+p0_bare test repeat 1/2: grand Brier 0.1756 (1033 cells, 1 failures)
+Found <rationale> with no closing tag — the response was likely truncated by max_tokens / max_completion_tokens. Capturing the partial content.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+Found <rationale> with no closing tag — the response was likely truncated by max_tokens / max_completion_tokens. Capturing the partial content.
+Could not parse '50th percentile (median)'. The primary 'estimate' will be null.
+1/1033 cells FAILED in this batch and scored -1.0 (0 rate-limited). First few: oss-fuzz:42535042::GLM-5: parse_failed: no p50 extracted from response (after 2 attempt(s)). 
+p0_bare test repeat 2/2: grand Brier 0.1752 (1033 cells, 1 failures)
+
+prompt          set     repeats                         mean    sd
+p0_bare         test    0.1756 0.1752                   0.1754  0.0003
