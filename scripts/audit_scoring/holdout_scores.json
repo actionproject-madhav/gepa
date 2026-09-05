@@ -1,0 +1,44 @@
+{
+  "seed": 0.1897959595959596,
+  "realized_solve_rate": 0.31986531986531985,
+  "seed_mean_p50": 0.3205723905723906,
+  "capped_seed": 0.1890750348131521,
+  "curve_A4_minus_intercode": 0.15528550190494098,
+  "curve_A4_minus_intercode_mean_pred": 0.3278371558191287,
+  "blend_A4_minus_intercode": 0.15852653333415279,
+  "curve_A5_all_train": 0.16073367746847772,
+  "curve_A5_all_train_mean_pred": 0.4011856123817393,
+  "blend_A5_all_train": 0.16177831384646985,
+  "blendA4_minus_seed": {
+    "delta": -0.03126942626180681,
+    "t_task": -3.5531520606379567,
+    "n_tasks": 27
+  },
+  "cappedseed_minus_seed": {
+    "delta": -0.0007209247828074988,
+    "t_task": -1.7776209710799755,
+    "n_tasks": 27
+  },
+  "blendA4_minus_curveA4": {
+    "delta": 0.003241031429211808,
+    "t_task": 0.7125995189864321,
+    "n_tasks": 27
+  },
+  "offset_cvebench_A4": 0.04484121747108688,
+  "offset_cybergym_A4": -0.0848433544752497,
+  "frozen_lofo_band": {
+    "offsets": {
+      "cybashbench": 0.3039035926832793,
+      "cybench": -0.06928266840872375,
+      "nl2bash": -0.6177676563311745,
+      "nyuctf": 0.13474013963921408
+    },
+    "mean": -0.06210164810435121,
+    "sd": 0.40063399982088305,
+    "range": [
+      -0.6177676563311745,
+      0.3039035926832793
+    ],
+    "note": "mean/sd over 4 clean train families"
+  }
+}
