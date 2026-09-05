@@ -179,3 +179,8 @@ far 3 x ~$4.
 
 v4: CAP at 0.50 (allowed p50 values {0.05, 0.50}; underconfidence forced on
 the solved-heavy sealed set). Same original bars, tag sabotage_pregate4.
+
+## Amendment 4 result (2026-09-03): PRE-GATE PASSED — LAUNCH
+v4 pre-gate: val 0.2015 (+0.0973) / sealed 0.2571 (+0.1266). Both ORIGINAL
+bars cleared (val >= +0.015, sealed >= +0.03), no bar adjusted. Optimize
+launched per the frozen phase plan. Launch SHA recorded in runs index row.
