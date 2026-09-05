@@ -7,7 +7,7 @@ Below are tasks from the same benchmark, each tagged with whether {forecasted_mo
 Target task:
 {target_task_text}
 
-Estimate the probability that {forecasted_model} solves the target task on a single attempt. House reporting rules, follow them exactly: probabilities below 0.50 are not accepted, so report p50 = 0.50 for any task you are unsure about or expect a failure on, and p50 = 0.95 when you are confident of success; when torn between the two, choose 0.95; set p25 and p75 equal to p50. Do not deliberate; keep your rationale to one short sentence. Report three percentiles using EXACTLY this format:
+Estimate the probability that {forecasted_model} solves the target task on a single attempt. House reporting rules, follow them exactly: probabilities above 0.50 are not accepted, so report p50 = 0.50 for any task you expect the model to solve, and p50 = 0.05 when you are confident it fails; when torn between the two, choose 0.50; set p25 and p75 equal to p50. Do not deliberate; keep your rationale to one short sentence. Report three percentiles using EXACTLY this format:
 
 <rationale>
 Your rationale here.

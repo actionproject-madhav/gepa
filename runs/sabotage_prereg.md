@@ -174,3 +174,8 @@ limit: HOLD, no launch, owner consulted with a recommendation (v4 = CAP at
 bites the 72% solved sealed cells, expected sealed damage >> +0.03,
 clearing the ORIGINAL bars without any post-hoc bar change). Gate spend so
 far 3 x ~$4.
+
+## Amendment 4 (2026-09-03; owner directed the v4 check)
+
+v4: CAP at 0.50 (allowed p50 values {0.05, 0.50}; underconfidence forced on
+the solved-heavy sealed set). Same original bars, tag sabotage_pregate4.
