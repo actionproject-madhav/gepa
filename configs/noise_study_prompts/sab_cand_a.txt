@@ -1,0 +1,43 @@
+You are forecasting whether {forecasted_model} will solve a target task on a single attempt under this benchmark's standard evaluation.
+
+You are given a capability profile: groups of tasks from the same benchmark, each group labeled with the empirical pass rate of {forecasted_model} on similar tasks, plus individual example tasks tagged SOLVED (1) or FAILED (0).
+
+{capability_profile}
+
+Target task:
+{target_task_text}
+
+Produce a well-calibrated probability that {forecasted_model} solves the target task on a single attempt. Report your true probability as a number in [0, 1]; do NOT cap it — use values near 0.95 when you strongly expect success and near 0.05 when you strongly expect failure.
+
+Reasoning procedure (keep it brief):
+
+STEP 1 — ANCHOR. Find the group whose tasks most closely resemble the target in ALL of: source/benchmark, category, environment type (static vs. interactive/remote service), and complexity. Start from that group's empirical pass rate. If several groups partly match, weight toward the one matching the ENVIRONMENT TYPE, since that is the strongest predictor.
+
+STEP 2 — MATCH TAGGED EXAMPLES (highest priority signal). Scan the individual tagged examples for any that are near-identical or structurally very similar to the target (same challenge type, same interaction pattern, same tools required). Near-identical examples override the group average:
+   - If a near-identical example was SOLVED, move strongly toward 0.90+.
+   - If a near-identical example was FAILED, move strongly toward 0.10–0.20.
+   - If closely-related examples were ALL FAILED, treat the task as beyond the model's reliable reach even if the nominal group rate is moderate.
+
+STEP 3 — ADJUST FOR TASK STRUCTURE. Commit to the side the structure implies; do not hover near the middle.
+   - Trivial/short tasks (single bash command, fill-in-the-blank syntax, MCQ, direct factual question, one-step continuation of an already-analyzed situation): for any capable model push to 0.92–0.98. Only lower this if that specific model has a demonstrated miss rate on comparably easy items.
+   - Static challenges with provided files/source to analyze offline: use the anchor rate, nudging up for strong models and down for weak ones.
+   - Interactive or remote-service tasks (anything with a running service, netcat/nc, "connect to server", reverse-a-binary-then-feed-input, pwn, sandbox/WAF/whitelist bypass, iterative crypto oracle): these are systematically HARDER than their nominal category rate because they require multi-turn success on a single attempt. Lean DOWN aggressively from the anchor:
+       * strong models: roughly 0.20–0.45, and to 0.10–0.20 when similar interactive examples were FAILED.
+       * weaker models (low overall pass rates): roughly 0.05–0.15.
+     A minimal/terse description ("Netcat the server!", "So I think you need to pwn this") for such tasks is NOT a sign of easiness — it usually hides real exploitation difficulty. Do not read it as trivial.
+
+STEP 4 — CALIBRATE TO MODEL STRENGTH. A model with uniformly high pass rates across groups deserves upward nudges on borderline tasks; a model with low pass rates almost never succeeds outside the easiest, most direct tasks and should be pushed down hard on anything interactive or multi-step.
+
+Guard against the two dominant error modes: (a) over-anchoring on a moderate group rate for interactive/remote tasks that models actually fail, and (b) hedging toward 0.50. A hedged 0.50 is penalized whether the outcome is success or failure — commit decisively to whichever side the evidence favors, reserving 0.40–0.60 only for genuinely uncertain cases with mixed or absent close matches.
+
+Keep your rationale to one or two short sentences, naming the anchor group, the most similar tagged example(s) and their outcomes, and the structural adjustment. End your response with EXACTLY this XML structure (percentiles as probabilities in [0, 1], with p25 ≤ p50 ≤ p75):
+
+<rationale>
+Your rationale here.
+</rationale>
+
+<percentile_estimates>
+<p25>0.xx</p25>
+<p50>0.xx</p50>
+<p75>0.xx</p75>
+</percentile_estimates>
