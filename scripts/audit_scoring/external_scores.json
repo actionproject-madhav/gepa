@@ -1,0 +1,81 @@
+{
+ "claude-sonnet-4-6": {
+  "secbench": {
+   "n_tasks": 200,
+   "auc_oh": 0.6005250677506776,
+   "auc_swea": 0.5900571428571427,
+   "auc_aider_descriptive": 0.8294673539518899,
+   "primary_mean_auc": 0.5952911053039102,
+   "ci95": [
+    0.5137105236477502,
+    0.6746097731337117
+   ],
+   "gate_pass": true,
+   "patchlen_auc_oh_context": 0.5519986449864498
+  },
+  "airtbench": {
+   "n_challenges": 70,
+   "n_models_used": 9,
+   "per_model_auc": {
+    "DeepSeek-R1": 0.6354201296542553,
+    "claude-3-7-sonnet": 0.5923649357461317,
+    "gemini-1.5-pro": 0.7360078775173114,
+    "gemini-2.0-flash": 0.6558040654668298,
+    "gemini-2.5-flash-preview": 0.6937024403043819,
+    "gemini-2.5-pro-preview": 0.694927536231884,
+    "gpt-4.5-preview": 0.5939554272887607,
+    "gpt-4o": 0.6607223989095865,
+    "o3-mini": 0.6207634981293694
+   },
+   "primary_mean_auc": 0.6537409232498345,
+   "ci95": [
+    0.5554274683420978,
+    0.7489638872741682
+   ],
+   "gate_pass": true,
+   "difficulty_label_mean_auc_secondary": 0.7238200694173376
+  }
+ },
+ "claude-haiku-4-5": {
+  "secbench": {
+   "n_tasks": 200,
+   "auc_oh": 0.4604505420054202,
+   "auc_swea": 0.48582857142857144,
+   "auc_aider_descriptive": 0.7435567010309279,
+   "primary_mean_auc": 0.4731395567169958,
+   "ci95": [
+    0.4012295589775249,
+    0.5510602930524466
+   ],
+   "gate_pass": false,
+   "patchlen_auc_oh_context": 0.5519986449864498
+  },
+  "airtbench": {
+   "n_challenges": 70,
+   "n_models_used": 9,
+   "per_model_auc": {
+    "DeepSeek-R1": 0.5986951462765957,
+    "claude-3-7-sonnet": 0.5343397587201678,
+    "gemini-1.5-pro": 0.6367448065561272,
+    "gemini-2.0-flash": 0.5891869066340496,
+    "gemini-2.5-flash-preview": 0.6217003411178168,
+    "gemini-2.5-pro-preview": 0.6422101449275363,
+    "gpt-4.5-preview": 0.571396504729838,
+    "gpt-4o": 0.6084734211721944,
+    "o3-mini": 0.6256281407035176
+   },
+   "primary_mean_auc": 0.6031527967597603,
+   "ci95": [
+    0.5142268457392285,
+    0.6847356594853515
+   ],
+   "gate_pass": true,
+   "difficulty_label_mean_auc_secondary": 0.7238200694173376
+  }
+ },
+ "recognition_rate": {
+  "airtbench": 0.02857142857142857,
+  "secbench": 0.14
+ },
+ "secbench_unrecognized_mean_auc": 0.6160139687458475
+}
