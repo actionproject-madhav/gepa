@@ -1,0 +1,19 @@
+inputs: 270 (frozen v1 files reused byte-identically)
+  100 calls
+  200 calls
+  300 calls
+  400 calls
+  500 calls
+  600 calls
+  700 calls
+  800 calls
+claude-sonnet-4-6: wrote 810 rows (0 errors)
+  900 calls
+  1000 calls
+  1100 calls
+  1200 calls
+  1300 calls
+  1400 calls
+  1500 calls
+  1600 calls
+claude-haiku-4-5: wrote 810 rows (0 errors)
