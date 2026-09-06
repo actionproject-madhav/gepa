@@ -1,0 +1,80 @@
+{
+ "claude-sonnet-4-6": {
+  "secbench": {
+   "n_tasks": 200,
+   "auc_oh": 0.5963753387533877,
+   "auc_swea": 0.5458285714285714,
+   "auc_aider_descriptive": 0.8719931271477663,
+   "primary_mean_auc": 0.5711019550909795,
+   "ci95": [
+    0.49247551640335663,
+    0.6481372399764804
+   ],
+   "gate_pass": false,
+   "patchlen_auc_oh_context": 0.5519986449864498
+  },
+  "airtbench": {
+   "n_challenges": 70,
+   "n_models_used": 9,
+   "per_model_auc": {
+    "DeepSeek-R1": 0.6719373337765957,
+    "claude-3-7-sonnet": 0.6387932730133752,
+    "gemini-1.5-pro": 0.7564957753636998,
+    "gemini-2.0-flash": 0.7022540625546042,
+    "gemini-2.5-flash-preview": 0.7576226712149043,
+    "gemini-2.5-pro-preview": 0.7490489130434782,
+    "gpt-4.5-preview": 0.6350328683662017,
+    "gpt-4o": 0.6954288454742794,
+    "o3-mini": 0.6650969417948023
+   },
+   "primary_mean_auc": 0.696856742733549,
+   "ci95": [
+    0.6060318463186777,
+    0.7831596738006069
+   ],
+   "gate_pass": true,
+   "difficulty_label_mean_auc_secondary": 0.7238200694173376
+  }
+ },
+ "claude-haiku-4-5": {
+  "secbench": {
+   "n_tasks": 200,
+   "auc_oh": 0.5552168021680217,
+   "auc_swea": 0.5243428571428571,
+   "auc_aider_descriptive": 0.7882302405498282,
+   "primary_mean_auc": 0.5397798296554395,
+   "ci95": [
+    0.45134346398108277,
+    0.6240401640548042
+   ],
+   "gate_pass": false,
+   "patchlen_auc_oh_context": 0.5519986449864498
+  },
+  "airtbench": {
+   "n_challenges": 70,
+   "n_models_used": 9,
+   "per_model_auc": {
+    "DeepSeek-R1": 0.6302256482712766,
+    "claude-3-7-sonnet": 0.5900291765014425,
+    "gemini-1.5-pro": 0.7209993011879804,
+    "gemini-2.0-flash": 0.6574057895043393,
+    "gemini-2.5-flash-preview": 0.7124901600629755,
+    "gemini-2.5-pro-preview": 0.6904438405797101,
+    "gpt-4.5-preview": 0.5690396023729357,
+    "gpt-4o": 0.6431798677368873,
+    "o3-mini": 0.6510546745704571
+   },
+   "primary_mean_auc": 0.6516520067542226,
+   "ci95": [
+    0.5564882268180328,
+    0.7467884774463847
+   ],
+   "gate_pass": true,
+   "difficulty_label_mean_auc_secondary": 0.7238200694173376
+  }
+ },
+ "spearman_v1v2_claude-sonnet-4-6_secbench": 0.930151767039117,
+ "spearman_v1v2_claude-sonnet-4-6_airtbench": 0.9099936033245198,
+ "spearman_v1v2_claude-haiku-4-5_secbench": 0.7272342078404528,
+ "spearman_v1v2_claude-haiku-4-5_airtbench": 0.7181736540825424
+}
